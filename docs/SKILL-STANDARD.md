@@ -63,8 +63,8 @@ evals/        测试案例与评价标准
 - 未判断适用性不照搬外部内容。
 - 冲突时决策顺序：仓库长期目标 → 当前 Workflow 目标 → 实际生产有效性。
 - 禁止机械拼接多个 Skill；禁止因"未来可能有用"提前开发未验证 Skill。
-- **Production First**：现有能力足以推进真实任务时，禁止为了优化 Skill 而暂停生产；Skill 迭代放在真实生产间隙或事后。
-- **Internal by default**：Brief / SPEC / Perception Notes / QA 明细等中间结构默认内部生成、落盘并供后续环节读取，不逐份向用户展示。只向用户展示：阻塞性问题（BLOCK）、影响方向或成本的重大决策、正式交付物（最终提示词、QA 结论、修正指令）、用户主动要求的内容。
+- **Production First**：现有能力足以推进真实任务时，禁止为了优化 Skill 而暂停生产；Skill 迭代放在真实生产间隙或事后。**运行时执行版：no-slacking R5。**
+- **Internal by default**：Brief / SPEC / Perception Notes / QA 明细等中间结构默认内部生成、落盘并供后续环节读取，不逐份向用户展示。只向用户展示：阻塞性问题（BLOCK）、影响方向或成本的重大决策、正式交付物（最终提示词、QA 结论、修正指令）、用户主动要求的内容。**运行时执行版：no-slacking R2。**
 - **Eval 准入（成熟度门槛）**：
   - Level 0 Draft：结构齐、未跑 eval；
   - Level 1 Text-validated：文本层 eval 全例 PASS（含失败模式），真实执行未验证；
