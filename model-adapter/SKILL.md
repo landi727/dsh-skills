@@ -1,6 +1,6 @@
 ---
 name: model-adapter
-description: Adapter：把已确定的创作决定翻译成目标模型可执行的语言——Visual Task Brief、STYLE SPEC、Composition/Design Spec → 最终提示词、参数、负向约束、必要技术适配。禁止重新决定概念、创意方向、构图、色彩世界、元素体系、视觉层级与 Signature。
+description: Adapter：把已确定的创作决定翻译成目标模型可执行语言。用户指定 Midjourney / DALL·E / 即梦 / Flux 等模型、且已有 visual-brief 简报或 style-replication 的 STYLE SPEC 时使用——输出最终提示词、参数、负向约束、必要技术适配。禁止重新决定概念、创意方向、构图、色彩世界、元素体系、视觉层级与 Signature。
 whenToUse: 当已有 visual-brief 简报或 style-replication 的 STYLE SPEC/Design Spec，需要转成某个具体图像模型的提示词时使用。没有上游决定时先走 visual-brief 或 style-replication。
 ---
 

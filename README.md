@@ -118,6 +118,10 @@ for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication'
   catch (e) { console.log(n, 'FAIL:', e.message); }
 }
 "
+# 3) 双向一致性：生效版（~/.dsh/skills）与仓库副本必须逐字节一致
+for s in no-slacking im-satisfied visual-brief style-replication model-adapter; do
+  diff -q ~/.dsh/skills/$s/SKILL.md $s/SKILL.md || echo "$s 不一致"
+done
 ```
 
 ## 灵感来源

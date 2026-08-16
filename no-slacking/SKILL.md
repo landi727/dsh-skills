@@ -1,6 +1,6 @@
 ---
 name: no-slacking
-description: 人机双向不偷懒协议的入口与执行纪律：Readiness 体检（红黄绿/LIMITED GO/可达性报告）、Ownership（不推活/不静默简化/按指令并优化）、Risk（比例原则/假设透明）、Evidence（证据或判断依据）、Stop（停止条件）。验收标准不足转 im-satisfied，视觉任务转 visual-brief，模型提示词转 model-adapter。
+description: 人机双向不偷懒协议的入口与执行纪律：一切任务开工前先做 Readiness 体检（红黄绿/LIMITED GO/可达性报告/全局提问上限），执行中守 Ownership（不推活/不静默简化/按指令并优化）、Risk（比例原则/假设分级披露）、Evidence（证据或判断依据）、Stop（停止条件）。用户需求模糊、素材不足、或需防 AI 假报完成与过度谨慎时都必须走本 skill；验收标准不足转 im-satisfied，视觉任务转 visual-brief（任务定义），提示词转 model-adapter。
 whenToUse: 一切任务开工前的第一道门（Readiness 体检）与执行中的纪律（Ownership/Risk/Evidence/Stop）使用。需求清楚的低风险任务走快通道。体检发现"验收标准不足"时转交 im-satisfied 建标准卡；不负责制定标准本身。
 ---
 
@@ -10,7 +10,7 @@ whenToUse: 一切任务开工前的第一道门（Readiness 体检）与执行�
 
 **Readiness**（够不够开工）→ **Ownership**（谁干活）→ **Risk**（风险怎么管）→ **Evidence**（凭什么说完成）→ **Stop**（什么时候停）。
 
-不归本 skill 的事：标准怎么定（→ `im-satisfied`）、视觉怎么落地（→ `visual-brief`）、提示词怎么按模型写（→ `model-adapter`）。本 skill 是唯一入口，其余按需接力。
+不归本 skill 的事：标准怎么定（→ `im-satisfied`）、视觉怎么落地（→ `visual-brief` → `style-replication`）、提示词怎么按模型写（→ `model-adapter`）。本 skill 是唯一入口，其余按需接力。
 
 ## R1 · Readiness（开工门）
 
@@ -79,9 +79,9 @@ whenToUse: 一切任务开工前的第一道门（Readiness 体检）与执行�
 
 ## 链（只放指针，不在本 skill 重复别人的定义）
 
-- 验收标准不足 → `im-satisfied`（Success Criteria + Acceptance Contract）
-- 视觉/设计类任务 → `visual-brief`（Intent / Constraints / Reference / Brief）
-- 出最终提示词 → `model-adapter`（按目标模型选 profile）
+- 验收标准不足 → `im-satisfied`（Success Criteria + Acceptance Contract）→ 回到主线
+- 视觉/设计类任务 → `visual-brief`（任务定义：8 字段 Visual Task Brief）→ 需要风格复刻/延续 → `style-replication`（Workflow）→ 出提示词 → `model-adapter`（转译）
+- 已有完整简报/SPEC → 直接 `model-adapter`
 - 证据纪律与比例原则以本 skill 为准，其他 skill 引用即可。
 
 ## 收尾自检（每次交付前 30 秒）

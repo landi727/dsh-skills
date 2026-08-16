@@ -1,6 +1,6 @@
 ---
 name: style-replication
-description: 视觉风格复刻完整 Workflow：Reference Registry → 人的感知（Perception Notes）→ 视觉事实拆解 → 抽取 Visual DNA（含受保护签名元素）→ STYLE SPEC（18 项）→ Similarity Dial（分档定义）→ Composition/Design Spec → Element Selection → model-adapter 转译 → Visual QA（PASS/PARTIAL/FAIL + 自测三问）→ Targeted Revision（V2 锚定）。输入 Visual Task Brief 与参考集，输出生产输入与验证结果。
+description: 视觉风格复刻完整 Workflow：用户给参考说"做出这种风格/延续这个系列/更像一点/怎么不像了"时使用——Reference Registry → 人的感知（Perception Notes）→ 视觉事实拆解 → 抽取 Visual DNA（含受保护签名元素）→ STYLE SPEC（18 项）→ Similarity Dial 分档 → Composition/Design Spec → Element Selection → model-adapter 转译 → Visual QA（PASS/PARTIAL/FAIL + 自测三问）→ Targeted Revision（V2 锚定）。输入 Visual Task Brief 与参考集，输出生产输入与验证结果。
 whenToUse: 当任务需要学习和复刻一种视觉语言、基于参考生成新内容、延续既有视觉体系、更换主体后保持视觉一致、控制参考继承程度（"像一点/更接近/别太像"）、或分析生成结果为何偏离参考并定向修正时使用。上游是 visual-brief；生成执行经 model-adapter。
 ---
 

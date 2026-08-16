@@ -1,6 +1,6 @@
 ---
 name: visual-brief
-description: 视觉子系统入口：只回答"这次视觉任务到底要创作什么"，产出 8 字段 Visual Task Brief（Goal / Deliverable / Content / Audience 与 Context / Creative Intent / References / Constraints / Acceptance）。不承担视觉设计、风格复刻、视觉 QA 与模型语法（分别由 style-replication、model-adapter 负责）。
+description: 视觉子系统入口：用户想做图（插画/海报/UI/图标/Logo/摄影等）但没说清"要创作什么"时，必须先产出 8 字段 Visual Task Brief（Goal / Deliverable / Content / Audience 与 Context / Creative Intent / References / Constraints / Acceptance）。只定义任务，不做设计、不复刻风格、不写模型语法（分别由 style-replication、model-adapter 负责）。
 whenToUse: 当用户提出视觉类任务（插画、海报、UI、图标、Logo、摄影等）需要先定义"要创作什么"再推进时使用。深度风格分析与复刻转入 style-replication；提示词翻译转入 model-adapter。
 ---
 

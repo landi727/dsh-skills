@@ -39,3 +39,18 @@
 - **Progressive Disclosure（主流程短、知识下沉 references/）**——所有领域 Skill 的结构规则（已在 SKILL-STANDARD 固化）。
 
 **结论**：本轮没有发现应立即拆分的 Capability；执行控制机制大多已被 no-slacking 全局化。下一阶段扩展时优先复用 no-slacking 与 SKILL-STANDARD，而不是复制本 Workflow。
+
+## 附：Visual QA 拆分评估（遗留问题处置记录）
+
+按 SKILL-STANDARD 的升级条件逐条对照 Visual QA：
+
+| 条件 | 现状 | 是否满足 |
+|---|---|---|
+| 被 ≥2 个 Workflow 稳定复用 | 仅 style-replication 使用 | ❌ |
+| 有独立触发条件 | 只在 Workflow 尾部触发 | ❌ |
+| 有独立输入/输出 | 输入与 STYLE SPEC 强绑定 | ⚠️ |
+| 有独立失败模式 | 依赖本 Workflow 的偏差定位语境 | ⚠️ |
+| 有独立验证方法 | 尚未经真实生成跑通 | ❌ |
+| 脱离原 Workflow 仍有价值 | 有（但未证实） | ⚠️ |
+
+**决定：不拆。** 重新评估的触发条件：① 第二个视觉 Workflow 出现；② Visual QA 被复用 ≥2 次；③ 有真实生产验证记录。三个条件同时满足后再启动拆分评估。

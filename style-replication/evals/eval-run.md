@@ -72,3 +72,22 @@
 
 本轮修复为增量（Dial 分档定义、受保护签名元素、V2 锚定、自测三问、Perception Notes、无参考模式、原创性措辞），不改变 Eval A/D/F 已通过项；A/D/F 文本层结论维持 PASS，B/C/E 仍待真实参考集与生成模型。新增机制（自测三问、受保护清单）需在下一次真实生产中首测。
 
+## 第三轮补跑：Eval B / C / E（文本层实跑）
+
+### Eval B — 同风格多参考（PASS，文本层）
+**输入**：三份同风格参考（瑞士风格爵士海报 / 建筑展海报 / 葡萄酒标，均为描述文本）。
+**运行**：Registry 三份均定角色 = Primary Visual Language；Visual Facts 取交集：网格组织、黑/红/米白三色关系、硬边几何、字号极端对比、斜切强调块；Visual DNA 提取：Constants = 网格 + 三色占比 + 硬边 + 字号对比 + 斜块；Source-specific = 各张的具体内容（乐器、建筑图、酒名）。
+**结论**：找到稳定共同规律 ✅、区分偶然内容与稳定规则 ✅、未平均混合 ✅ → PASS（文本层）；真实图像层未验证。
+
+### Eval C — 多参考不同职责（PASS，文本层）
+**输入**：Image 1 = Visual Language（瑞士海报）；Image 2 = Composition（对角构图杂志内页）；Image 3 = Color（陶土/藏青/奶油摄影色卡）。
+**运行**：Registry 按职责登记；冲突识别——Image 2 的对角构图与 Image 1 的网格冲突；按任务目的（海报）定主次：构图以 Image 1 为主、只借 Image 2 的对角动线；Color 以 Image 3 的色板关系为准；冲突与主次已写入 Registry。STYLE SPEC 中可看出每份参考的贡献来源（03 来自 Image 1+2 融合、08 来自 Image 3）。
+**结论**：各司其职 ✅、冲突定主次并记录 ✅、贡献可溯源 ✅ → PASS（文本层）。
+
+### Eval E — Content Transfer（PASS，文本层）
+**输入**：Eval A 的 STYLE SPEC + 新主体（新茶品牌招牌海报，换掉咖啡内容）。
+**运行**：Constants 全部保持（三色体系/网格/硬边/字号对比/斜块机制）；Variables 按需变化（文字内容、斜块位置、杯型图形换茶壶剪影）；Signature（斜切红块 + 网格大字）在新设计中仍可辨认，且出现在 Design Spec 的指定位置。
+**结论**：Constants 稳定 ✅、Variables 按需 ✅、Signature 可辨认 ✅、无"为换而换"元素 ✅ → PASS（文本层）；真实图像层未验证。
+
+**三例遗留**：B/C/E 的真实图像观察与生成仍待有生成模型的环境；此为唯一未验证环节。
+
