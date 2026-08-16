@@ -61,8 +61,8 @@ style-replication 内部目前包含 Reference Analysis / Visual Grammar / Compo
 
 ```
 dsh-skills/
-├── no-slacking/SKILL.md          （本轮冻结）
-├── im-satisfied/SKILL.md         （本轮冻结）
+├── no-slacking/SKILL.md          （入口与执行纪律）
+├── im-satisfied/SKILL.md         （条件分支：满意标准卡）
 ├── visual-brief/
 │   ├── SKILL.md                  （瘦身后的主流程）
 │   └── references/               （category-norms / ai-tells / vocabulary）

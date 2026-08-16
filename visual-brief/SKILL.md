@@ -37,7 +37,7 @@ whenToUse: 当用户提出视觉类任务（插画、海报、UI、图标、Logo
 ## 失败处理
 
 - 类别不明确：判定最接近类别，按该类别规范追问（读 category-norms.md）。
-- 参考缺失：Brief 标注"参考缺失"，转 style-replication 时先做 Reference Registry。
+- 参考缺失：任务确实要求风格复刻时，先补参考再转 style-replication；无参考且无需复刻时，直接出 Brief 转 model-adapter。
 - 资料不足：按 no-slacking 红灯流程（可达性报告 / LIMITED GO）。
 
 ## 收尾自检

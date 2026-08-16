@@ -22,7 +22,7 @@ whenToUse: 当任务需要学习和复刻一种视觉语言、基于参考生成
 ## 输入契约
 
 1. **Visual Task Brief**（visual-brief 产出）。
-2. **Reference Set**（参考图/参考描述；无参考时走"无参考模式"）。
+2. **Reference Set**（参考图/参考描述，尽量带角色说明）。
 3. **Human Feedback / Judgment**（人的感知，见 Stage 2）。
 
 ## 输出契约
