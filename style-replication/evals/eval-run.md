@@ -91,3 +91,9 @@
 
 **三例遗留**：B/C/E 的真实图像观察与生成仍待有生成模型的环境；此为唯一未验证环节。
 
+## 第四轮调整补记（2026-08-16 同日）
+
+按评审删除 style-replication 的「无参考模式」与「85% 至少改四个签名元素」：无参考任务改为经 visual-brief → model-adapter 路由；Eval D 场景与检查点已同步更新，其既有文本层结论维持 PASS（处理逻辑未变，仅路由变化）；受保护签名元素与"不重建商业身份"的定性规则保留。
+
+**当前成熟度（按 SKILL-STANDARD Eval 准入）**：style-replication = Level 1 Text-validated（A/B/C/D/E/F 文本层全 PASS；真实生成未验证）。
+

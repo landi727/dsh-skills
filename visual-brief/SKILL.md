@@ -19,6 +19,7 @@ whenToUse: 当用户提出视觉类任务（插画、海报、UI、图标、Logo
    维度与字段映射：用途/载体+类别→Deliverable；主体→Content；受众与语境→Audience & Context；情绪感受→Creative Intent；风格方向→References/Creative Intent；硬性约束→Constraints；任务目标→Goal。
 3. **提问纪律**：遵循 no-slacking 全局上限——整条链累计最多 1–3 个阻塞问题，其余用上下文/参考/显式假设补齐（标注"假设"）。快问快答：用户只想快速要图时，按"用途+主题+风格"三要素直接出简报。
 4. 需要领域规范（UI/Logo/摄影/插画/平面的生产约束）→ 读 `references/category-norms.md`；需要去 AI 味清单 → 读 `references/ai-tells.md`；需要中英术语 → 读 `references/vocabulary.md`。**按需读，不全读。**
+5. 模糊情绪词（高级/复古/艺术感…）是待解释信号：不自动映射成视觉公式，用反例法/例子法让用户选方向，或标为假设（详见 ai-tells.md）。无参考的视觉任务不触发 style-replication，直接出 Brief 后转 model-adapter。
 
 ## 输出：Visual Task Brief（8 字段）
 
