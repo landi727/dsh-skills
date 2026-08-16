@@ -28,6 +28,8 @@
 9. **Stop Condition**：什么时候停止。
 10. **Reuse Scope**：全仓库 / 领域 / 某 Workflow 专属。
 
+**落地要求**：主 SKILL.md 必须**显式**声明至少 6 项——类型、Responsibility、Boundary、Input Contract、Output Contract、Failure Handling；Trigger 以 frontmatter 的 whenToUse 承担；Validation、Stop Condition、Reuse Scope 可显式或**引用全局规则**（如 no-slacking R4/R5），但引用必须写明出处，不能靠模型自己猜。
+
 ## Progressive Disclosure 规则（仓库统一）
 
 ```
@@ -40,6 +42,7 @@ evals/        测试案例与评价标准
 
 - 主 SKILL.md 优先保证执行清晰；长知识一律下沉 references/。
 - references/ **不会自动加载**：SKILL.md 必须写明"何时、读哪个文件"，否则知识会变成死档。
+- **跨 skill 引用规范**：相对路径只对**本 skill 自己的**资源目录有效。引用其他 skill 的文件必须写"读取 \<skill 名\> 技能的 references/\<文件\>"（例如"读取 visual-brief 技能的 references/ai-tells.md"），不得写会被本 skill 目录解析的相对路径。
 
 ## 内部步骤升级成独立 Skill 的条件
 

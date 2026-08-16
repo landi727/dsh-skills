@@ -7,8 +7,10 @@ whenToUse: 当已有 visual-brief 简报或 style-replication 的 STYLE SPEC/Des
 # Model Adapter（模型适配器）
 
 **类型**：Adapter
+**Reuse Scope**：视觉生成工具链；跨领域的"适配器"模式可参照本结构
 **Responsibility**：把已确定的创作决定翻译成目标模型可执行的语言。
 **Boundary**：不决定 Concept / Creative Direction / Composition / Color World / Element System / Visual Hierarchy / Signature。
+**Stop Condition**：输出契约四件套齐（提示词/参数/负向约束/适配披露）即完成。
 
 ## 输入契约
 
@@ -22,7 +24,7 @@ whenToUse: 当已有 visual-brief 简报或 style-replication 的 STYLE SPEC/Des
 ## 转译原则
 
 - 保持语义不变；允许为模型能力做**必要技术适配**（如长文字→拆分/换工具）；影响创作结果的适配必须披露。
-- 去 AI 味分工：内容知识在 `visual-brief/references/ai-tells.md`；本 skill 负责用目标模型语法表达负向约束。
+- 去 AI 味分工：内容知识见 **visual-brief 技能的 `references/ai-tells.md`**（以 visual-brief 的资源目录解析，本 skill 不复制）；本 skill 负责用目标模型语法表达负向约束。
 - 未知模型 → 读 `references/generic-natural-language.md`，不猜专属语法。
 
 ## 模型知识（Progressive Disclosure）
