@@ -1,6 +1,6 @@
 ---
 name: model-adapter
-description: 图像生成模型适配器：接收 visual-brief 的模型无关简报，按目标模型输出最终提示词——Profile 0 通用自然语言（未知模型默认），以及 Midjourney / ChatGPT Images / 即梦·豆包 / SD·Flux 四个专属 profile，把去 AI 味负向约束翻译成各模型语法（--no / Avoid: / 负面提示词）。
+description: 图像生成模型适配器：接收 visual-brief 的模型无关简报，按目标模型输出最终提示词——Profile 0 通用自然语言（未知模型默认），以及 Midjourney / ChatGPT Images / 即梦·豆包 / SD·Flux 四个专属 profile，把去 AI 味负向约束翻译成各模型语法（--no、Avoid 句式、负面提示词）。
 whenToUse: 当已有（或刚产出）一份 visual-brief 简报、需要转成某个具体图像模型的提示词时使用。没有简报时先走 visual-brief。
 ---
 
