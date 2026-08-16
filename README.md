@@ -66,6 +66,27 @@ for s in no-slacking im-satisfied visual-brief model-adapter; do
 done
 ```
 
+## 发布前检查
+
+改完 frontmatter 后跑一次检查，防止 skill 因格式错误被 DSH 静默跳过：
+
+```bash
+# 1) 快速检查：frontmatter 同一行不得出现第二个 ASCII ": "（"Avoid: /" 这类写法会让 YAML 解析失败）
+awk 'BEGIN{fm=0} /^---$/ {fm=!fm; next} fm && gsub(/: /, ": ") > 1 {print FILENAME ":" FNR ": " $0}' */SKILL.md
+
+# 2) 完整检查：用与 DSH 同源的 yaml 库解析（先 npm i yaml，或指向本机已有路径）
+node -e "
+const fs = require('fs');
+const yaml = require('yaml');
+for (const n of ['no-slacking','im-satisfied','visual-brief','model-adapter']) {
+  const s = fs.readFileSync(n + '/SKILL.md', 'utf8');
+  const m = s.match(/^---\n([\s\S]*?)\n---/);
+  try { yaml.parse(m[1]); console.log(n, 'OK'); }
+  catch (e) { console.log(n, 'FAIL:', e.message); }
+}
+"
+```
+
 ## 灵感来源
 
 - [obra/superpowers](https://github.com/obra/superpowers) —— 尤其 `verification-before-completion`（证据先于断言）。
