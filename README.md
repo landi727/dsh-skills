@@ -126,7 +126,7 @@ for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication'
 }
 "
 # 3) 双向一致性：生效版（~/.dsh/skills）与仓库副本必须逐字节一致
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter; do
+for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript; do
   diff -q ~/.dsh/skills/$s/SKILL.md $s/SKILL.md || echo "$s 不一致"
 done
 ```
