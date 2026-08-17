@@ -45,6 +45,8 @@ targeted revision（定向修正）
 
 style-replication 内部目前包含 Reference Analysis / Visual Grammar / Composition-Design / Visual QA，**暂不拆独立 Skill**（升级条件见 docs/SKILL-STANDARD.md）。
 
+另：Writing / Content Production 方向第一个完整 Workflow 已建成（`film-review-from-transcript`：口述/聊天/笔记 → 影评成文，观点与声音保真 + 最小编辑 + 三查台账）。当前为单点，暂不构成子系统。
+
 ## Skill Map
 
 | Skill | 类型 | 上游 | 下游 | 职责一句话 |
@@ -54,6 +56,7 @@ style-replication 内部目前包含 Reference Analysis / Visual Grammar / Compo
 | visual-brief | Visual Capability | no-slacking | style-replication / model-adapter | 定义"这次视觉任务要创作什么"（8 字段 Brief） |
 | style-replication | Workflow | visual-brief | model-adapter → generation → QA | 风格复刻全流程：参考→理解→STYLE SPEC→设计→验证→修正 |
 | model-adapter | Adapter | visual-brief / style-replication | 用户（生成工具） | 把已定创作决定翻译成目标模型可执行语言 |
+| film-review-from-transcript | Workflow（写作） | no-slacking →（标准不清时）im-satisfied | 用户（成稿+台账摘要） | 口述/聊天/笔记 → 影评成文：Opinion Map + Voice 保真 + 最小编辑 + 三查台账 |
 
 （每个 Skill 的 Trigger/Input/Output/Failure/Validation 等 10 项结构见各自 SKILL.md，标准见 docs/SKILL-STANDARD.md。）
 
@@ -73,6 +76,10 @@ dsh-skills/
 ├── model-adapter/
 │   ├── SKILL.md                  （转译原则与边界）
 │   └── references/               （midjourney / chatgpt-images / jimeng / flux-sd / generic）
+├── film-review-from-transcript/
+│   ├── SKILL.md                  （Writing 方向第一个 Workflow）
+│   ├── references/               （anti-ai-patterns / voice-markers / shape-catalog）
+│   └── evals/                    （eval-a…h + eval-run 运行记录）
 ├── docs/SKILL-STANDARD.md        （全仓库 Skill 设计标准）
 └── WORKFLOW-RETROSPECTIVE.md     （本轮样板复盘）
 ```
@@ -81,10 +88,10 @@ dsh-skills/
 
 ```bash
 mkdir -p ~/.dsh/skills
-cp -R no-slacking im-satisfied visual-brief style-replication model-adapter ~/.dsh/skills/
+cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript ~/.dsh/skills/
 
 # 共享目录（Claude / Cursor 等也能读取）：
-# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter ~/.agents/skills/
+# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript ~/.agents/skills/
 ```
 
 （用 `cp -R` 以包含各 skill 的 `references/`。）
@@ -94,7 +101,7 @@ cp -R no-slacking im-satisfied visual-brief style-replication model-adapter ~/.d
 本仓库是 `~/.dsh/skills` 的发布快照。日常迭代以 `~/.dsh/skills` 为准：
 
 ```bash
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter; do
+for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript; do
   mkdir -p $s && cp -R ~/.dsh/skills/$s/ $s/
 done
 ```
@@ -111,7 +118,7 @@ awk 'BEGIN{fm=0} /^---$/ {fm=!fm; next} fm && gsub(/: /, ": ") > 1 {print FILENA
 node -e "
 const fs = require('fs');
 const yaml = require('yaml');
-for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter']) {
+for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter','film-review-from-transcript']) {
   const s = fs.readFileSync(n + '/SKILL.md', 'utf8');
   const m = s.match(/^---\n([\s\S]*?)\n---/);
   try { yaml.parse(m[1]); console.log(n, 'OK'); }

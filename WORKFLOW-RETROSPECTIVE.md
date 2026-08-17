@@ -54,3 +54,27 @@
 | 脱离原 Workflow 仍有价值 | 有（但未证实） | ⚠️ |
 
 **决定：不拆。** 重新评估的触发条件：① 第二个视觉 Workflow 出现；② Visual QA 被复用 ≥2 次；③ 有真实生产验证记录。三个条件同时满足后再启动拆分评估。
+
+## 附2：film-review-from-transcript 调研取舍与 Capability 候选（2026-08-16）
+
+### 采用的外部机制
+
+| 机制 | 来源 | 落地为 |
+|---|---|---|
+| 声音分析维度（词汇指纹/句式节奏/强度词）+ 高价值原句 + 禁用语清单 | [claude-voice-analyzer](https://github.com/aplaceforallmystuff/claude-voice-analyzer) | Voice Profile（任务级，从本次口述稿提取） |
+| Horoscope 测试 + 分级模式库 + 改动前后报告 | [antislop](https://github.com/aplaceforallmystuff/signal-starter-kit) | Anti-AI 查 + 编辑台账；模式库改写为中文影评语境 |
+| Reader Testing（新鲜读者捉盲点） | [doc-coauthoring](https://github.com/anthropics/skills) | Critic 三查（观点保真/Voice/Anti-AI） |
+
+### 未采用的（及原因）
+
+- antislop 的英文词表（delve/tapestry…）→ 本地化为中文影评高频词，否则无用。
+- voice-analyzer 的"3–5 篇范文 → 项目级 VOICE.md"→ 本任务是单次口述稿成文，Voice Profile 为任务级；项目级 VOICE.md 记入候选。
+- doc-coauthoring 的三阶段交互式共建（上下文访谈 + 迭代 + 读者测试）→ 我们是一次性材料 → 成稿场景，访谈部分已由 no-slacking/im-satisfied 承担，不复制。
+- glmv-doc-based-writing：API 调用壳，无机制可采；writing-shape（mattpocock 主线未找到）与 article-writing（通用无显著机制）未采用。
+
+### 跨领域 Capability 候选（不立即拆）
+
+1. **Opinion Map**：观点事实源提取（主张+原句+立场强度+未表达）——可复用于书评/产品反馈/访谈整理。
+2. **Voice Profile**：任务级声音档案，未来可升级为项目级 VOICE.md 型 Capability（多任务共享同一作者声音）。
+3. **Edit Ledger**：任何"AI 改写"任务的审计台账（增/删/并/调/改逐项 + 原因）。
+4. **Anti-AI 模式库**：跨文体的 AI 痕迹分级清单（当前影评语境版）。
