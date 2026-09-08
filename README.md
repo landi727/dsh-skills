@@ -24,7 +24,7 @@ Real Deliverable
 |---|---|---|
 | CORE / PROTOCOL | 全局执行纪律与协作规则 | no-slacking、im-satisfied |
 | CAPABILITY | 可被多个 Workflow 复用的稳定能力 | visual-brief（视觉） |
-| WORKFLOW | 组合能力完成完整生产任务 | style-replication |
+| WORKFLOW | 组合能力完成完整生产任务 | style-replication、build-modular-longform-templates（视觉） |
 | ADAPTER / UTILITY | 模型、工具、外部执行环境适配 | model-adapter |
 
 ## 当前子系统：Creative / Visual Production
@@ -55,6 +55,7 @@ style-replication 内部目前包含 Reference Analysis / Visual Grammar / Compo
 | im-satisfied | Protocol | no-slacking | 主线 | 条件分支：满意标准卡 + 验收契约 |
 | visual-brief | Visual Capability | no-slacking | style-replication / model-adapter | 定义"这次视觉任务要创作什么"（8 字段 Brief） |
 | style-replication | Workflow | visual-brief | model-adapter → generation → QA | 风格复刻全流程：参考→理解→STYLE SPEC→设计→验证→修正 |
+| [build-modular-longform-templates](build-modular-longform-templates/SKILL.md) | Workflow（视觉） | 原始参考图 + 固定视觉风格 + 模块范围 | 用户 / Cursor（HTML + CSS 文件） | 固定风格 → 模块拆解 → 正文自动增高 → 本地模板文件与组合示例；Level 0 Draft，真实生产未验证 |
 | model-adapter | Adapter | visual-brief / style-replication | 用户（生成工具） | 把已定创作决定翻译成目标模型可执行语言 |
 | film-review-from-transcript | Workflow（写作） | no-slacking →（标准不清时）im-satisfied | 用户（成稿+台账摘要） | 口述/聊天/笔记 → 影评成文：Opinion Map + Voice 保真 + 最小编辑 + 三查台账 |
 
@@ -73,6 +74,11 @@ dsh-skills/
 │   ├── SKILL.md                  （完整 Workflow）
 │   ├── references/               （element-selection）
 │   └── evals/                    （eval-a…f + eval-run 运行记录）
+├── build-modular-longform-templates/
+│   ├── SKILL.md                  （模块化长图文模板 Workflow）
+│   ├── agents/openai.yaml        （Skill 显示与调用信息）
+│   ├── assets/icon.svg           （Skill 图标）
+│   └── references/html-delivery.md（HTML 文件、延展与验收规则）
 ├── model-adapter/
 │   ├── SKILL.md                  （转译原则与边界）
 │   └── references/               （midjourney / chatgpt-images / jimeng / flux-sd / generic）
@@ -88,10 +94,10 @@ dsh-skills/
 
 ```bash
 mkdir -p ~/.dsh/skills
-cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript ~/.dsh/skills/
+cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates ~/.dsh/skills/
 
 # 共享目录（Claude / Cursor 等也能读取）：
-# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript ~/.agents/skills/
+# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates ~/.agents/skills/
 ```
 
 （用 `cp -R` 以包含各 skill 的 `references/`。）
@@ -101,7 +107,7 @@ cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film
 本仓库是 `~/.dsh/skills` 的发布快照。日常迭代以 `~/.dsh/skills` 为准：
 
 ```bash
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript; do
+for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates; do
   mkdir -p $s && cp -R ~/.dsh/skills/$s/ $s/
 done
 ```
@@ -118,7 +124,7 @@ awk 'BEGIN{fm=0} /^---$/ {fm=!fm; next} fm && gsub(/: /, ": ") > 1 {print FILENA
 node -e "
 const fs = require('fs');
 const yaml = require('yaml');
-for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter','film-review-from-transcript']) {
+for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter','film-review-from-transcript','build-modular-longform-templates']) {
   const s = fs.readFileSync(n + '/SKILL.md', 'utf8');
   const m = s.match(/^---\n([\s\S]*?)\n---/);
   try { yaml.parse(m[1]); console.log(n, 'OK'); }
@@ -126,7 +132,7 @@ for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication'
 }
 "
 # 3) 双向一致性：生效版（~/.dsh/skills）与仓库副本必须逐字节一致
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript; do
+for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates; do
   diff -q ~/.dsh/skills/$s/SKILL.md $s/SKILL.md || echo "$s 不一致"
 done
 ```

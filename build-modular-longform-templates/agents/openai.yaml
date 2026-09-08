@@ -1,0 +1,14 @@
+interface:
+  display_name: 模块化长图文模板
+  short_description: 依据固定视觉风格生成可组合、正文自动延长的本地 HTML 与 CSS 模板文件
+  default_prompt: 使用 $build-modular-longform-templates，依据我提供的参考图和固定视觉风格，生成可独立使用、可组合且正文自动增高的
+    HTML + CSS 长图文模块，交付本地素材、组合示例并检查延展效果。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
