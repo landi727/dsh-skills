@@ -1,0 +1,14 @@
+interface:
+  display_name: 可画分层模板重建
+  short_description: 将平面参考图按PSD层级重建为可画可编辑PDF模板并完成导入校验
+  default_prompt: Use $rebuild-layered-canva-template to rebuild this reference image
+    as a layered, Canva-editable template.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
