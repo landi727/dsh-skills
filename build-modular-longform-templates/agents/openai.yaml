@@ -1,8 +1,8 @@
 interface:
   display_name: 模块化长图文模板
-  short_description: 依据固定视觉风格生成可组合、正文自动延长的本地 HTML 与 CSS 模板文件
-  default_prompt: 使用 $build-modular-longform-templates，依据我提供的参考图和固定视觉风格，生成可独立使用、可组合且正文自动增高的
-    HTML + CSS 长图文模块，交付本地素材、组合示例并检查延展效果。
+  short_description: 先生成1000×1600模块预览，确认后转成正文自动延长的HTML与CSS模板
+  default_prompt: 使用 $build-modular-longform-templates，先依据参考图生成1000×1600模块预览供我确认；确认后再拆成可独立使用、可组合且正文自动增高的
+    HTML + CSS 长图文模块，并交付本地素材、组合示例和延展检查结果。
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
 policy:
