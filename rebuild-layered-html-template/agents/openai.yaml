@@ -1,0 +1,4 @@
+interface:
+  display_name: "分层 HTML 模板重建"
+  short_description: "将扁平参考图重建为 PSD 逻辑的本地可编辑 HTML 与 CSS 模板"
+  default_prompt: "使用 $rebuild-layered-html-template，以我提供的准确原图为基准，重建为分层可编辑、本地独立运行的 HTML + CSS 模板，并完成视觉与结构校验。"
