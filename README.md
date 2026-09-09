@@ -24,7 +24,7 @@ Real Deliverable
 |---|---|---|
 | CORE / PROTOCOL | 全局执行纪律与协作规则 | no-slacking、im-satisfied |
 | CAPABILITY | 可被多个 Workflow 复用的稳定能力 | visual-brief（视觉） |
-| WORKFLOW | 组合能力完成完整生产任务 | style-replication、build-modular-longform-templates（视觉） |
+| WORKFLOW | 组合能力完成完整生产任务 | style-replication、build-modular-longform-templates、rebuild-layered-html-template（视觉） |
 | ADAPTER / UTILITY | 模型、工具、外部执行环境适配 | model-adapter |
 
 ## 当前子系统：Creative / Visual Production
@@ -56,6 +56,7 @@ style-replication 内部目前包含 Reference Analysis / Visual Grammar / Compo
 | visual-brief | Visual Capability | no-slacking | style-replication / model-adapter | 定义"这次视觉任务要创作什么"（8 字段 Brief） |
 | style-replication | Workflow | visual-brief | model-adapter → generation → QA | 风格复刻全流程：参考→理解→STYLE SPEC→设计→验证→修正 |
 | [build-modular-longform-templates](build-modular-longform-templates/SKILL.md) | Workflow（视觉） | 原始参考图 + 固定视觉风格 + 模块范围 | 用户 / Cursor（HTML + CSS 文件） | 固定风格 → 模块拆解 → 正文自动增高 → 本地模板文件与组合示例；Level 0 Draft，真实生产未验证 |
+| [rebuild-layered-html-template](rebuild-layered-html-template/SKILL.md) | Workflow（视觉） | 准确扁平原图 + 目标画布 + 品牌保护区 | 用户 / Cursor（分层 HTML + CSS 文件） | 准确原图 → PSD 式拆层 → 本地 HTML/CSS 重建 → 结构与视觉校验；Level 0 Draft，已完成一次真实生产回测 |
 | model-adapter | Adapter | visual-brief / style-replication | 用户（生成工具） | 把已定创作决定翻译成目标模型可执行语言 |
 | film-review-from-transcript | Workflow（写作） | no-slacking →（标准不清时）im-satisfied | 用户（成稿+台账摘要） | 口述/聊天/笔记 → 影评成文：Opinion Map + Voice 保真 + 最小编辑 + 三查台账 |
 
@@ -79,6 +80,12 @@ dsh-skills/
 │   ├── agents/openai.yaml        （Skill 显示与调用信息）
 │   ├── assets/icon.svg           （Skill 图标）
 │   └── references/html-delivery.md（HTML 文件、延展与验收规则）
+├── rebuild-layered-html-template/
+│   ├── SKILL.md                  （扁平原图转 PSD 式分层 HTML/CSS Workflow）
+│   ├── agents/openai.yaml        （Skill 显示与调用信息）
+│   ├── references/               （图层模型、素材策略与视觉 QA）
+│   ├── scripts/                  （本地资源与文件结构检查）
+│   └── evals/                    （真实生产回测记录）
 ├── model-adapter/
 │   ├── SKILL.md                  （转译原则与边界）
 │   └── references/               （midjourney / chatgpt-images / jimeng / flux-sd / generic）
@@ -94,10 +101,10 @@ dsh-skills/
 
 ```bash
 mkdir -p ~/.dsh/skills
-cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates ~/.dsh/skills/
+cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates rebuild-layered-html-template ~/.dsh/skills/
 
 # 共享目录（Claude / Cursor 等也能读取）：
-# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates ~/.agents/skills/
+# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates rebuild-layered-html-template ~/.agents/skills/
 ```
 
 （用 `cp -R` 以包含各 skill 的 `references/`。）
@@ -107,7 +114,7 @@ cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film
 本仓库是 `~/.dsh/skills` 的发布快照。日常迭代以 `~/.dsh/skills` 为准：
 
 ```bash
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates; do
+for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates rebuild-layered-html-template; do
   mkdir -p $s && cp -R ~/.dsh/skills/$s/ $s/
 done
 ```
@@ -124,7 +131,7 @@ awk 'BEGIN{fm=0} /^---$/ {fm=!fm; next} fm && gsub(/: /, ": ") > 1 {print FILENA
 node -e "
 const fs = require('fs');
 const yaml = require('yaml');
-for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter','film-review-from-transcript','build-modular-longform-templates']) {
+for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter','film-review-from-transcript','build-modular-longform-templates','rebuild-layered-html-template']) {
   const s = fs.readFileSync(n + '/SKILL.md', 'utf8');
   const m = s.match(/^---\n([\s\S]*?)\n---/);
   try { yaml.parse(m[1]); console.log(n, 'OK'); }
