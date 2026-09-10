@@ -15,7 +15,7 @@
 
 Map the target character's identity cues into the reference's proportion, silhouette, facial-detail, gesture, clothing-simplification, layer-role, visibility, modeling-mode, and object-detail-density systems. Preserve face, gesture, action readability, and role hierarchy. Derive new poses and interactions from the target narrative.
 
-State the narrative beat, focal action, modeling ceiling, and character-tier progression before surface styling. Keep character count within the semantic-group and canvas-density budget. Do not add facial gradients, glossy clothing, anatomical turning lines, or prop reflections without source support.
+Follow generation-blueprint-schema.md for prompt order. Promote narrative beat, focal action, gaze or expression when they define this reference; attach remaining character-tier and modeling controls locally. Keep character count within the semantic-group and canvas-density budget. Do not add facial gradients, glossy clothing, anatomical turning lines, or prop reflections without source support.
 
 ## Accept
 

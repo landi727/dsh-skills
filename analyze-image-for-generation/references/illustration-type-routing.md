@@ -33,6 +33,6 @@ Choose the type from how the image is built. Subject matter alone does not deter
 - Reconsider classification after the full-frame audit when local crops suggested a misleading type.
 - Keep photography, UI interaction design, page-layout systems, and 3D-render pipelines outside this skill's main scope. Analyze illustrated instances only through their visible illustration construction.
 
-Load the shared analysis references for every task, then load only the selected subtype files. Do not merge all subtype prompts or acceptance criteria.
+Follow SKILL.md for shared and conditional reference loading, then load only the selected subtype files. Do not merge all subtype prompts or acceptance criteria. Final priority and prompt order follow generation-blueprint-schema.md.
 
-Always load `layering-hidden-shapes.md` and `object-modeling.md` as shared systems. Use the selected subtype module to refine their evidence questions and allowed mechanisms. Do not assign layer grammar or modeling mode from illustration type alone: a flat graphic may interlock several depth bands, a painterly image may use transparent overlays, and a technical illustration may derive volume primarily from lines.
+Inspect layering and modeling at the whole-image scan level; load their detailed references when these systems affect the task or a full blueprint is requested. Use the selected subtype module to refine their evidence questions and allowed mechanisms. Do not assign layer grammar or modeling mode from illustration type alone: a flat graphic may interlock several depth bands, a painterly image may use transparent overlays, and a technical illustration may derive volume primarily from lines.

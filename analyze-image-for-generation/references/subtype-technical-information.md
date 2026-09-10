@@ -13,7 +13,7 @@
 
 ## Transfer and prompt
 
-Lock exact facts, labels, units, connections, sequence, layer roles, clipping containers, and protected visibility before applying style. Preserve projection, diagram relationships, modeling mode, line-volume functions, and part-detail hierarchy while translating color, typography, panel, and motif treatment. Keep decorative and material effects subordinate to information.
+Preserve required facts, labels, units, connections, sequence, layer roles, clipping containers, and protected visibility. Follow generation-blueprint-schema.md for prompt order; exact factual requirements retain priority over conflicting inferred styling. Preserve projection, diagram relationships, modeling mode, line-volume functions, and part-detail hierarchy while translating color, typography, panel, and motif treatment. Keep decorative and material effects subordinate to information.
 
 Place required text and data in a separate exact-content block. Mark unresolved technical facts rather than inventing them.
 

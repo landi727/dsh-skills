@@ -15,7 +15,7 @@
 
 Preserve mark behavior by function and region. Specify which edges remain controlled, where strokes follow form, where colors mix, how underlayers remain visible, which edges are restated above overlaps, and how focal areas receive higher definition. Scale marks to the target object and canvas instead of copying individual strokes.
 
-Describe mass construction, modeling mode, value masses, lighting ceiling, material response, and edge hierarchy before naming a medium. Preserve clean or weakly modeled regions. Avoid applying one uniform brush, grain filter, glossy response, or continuous modeling strength across all regions.
+Follow generation-blueprint-schema.md for prompt order. Prioritize the source's decisive mass, edge, mark, or color behavior; a medium label does not replace those mechanisms. Preserve clean/weakly modeled regions when present and dense/strongly modeled passages when decisive. Avoid applying one uniform brush, grain filter, glossy response, or continuous modeling strength across all regions.
 
 ## Accept
 

@@ -130,7 +130,7 @@ When two fragments may belong to one shape or separate objects, retain both hypo
 
 ## 6. Transfer the layer grammar
 
-The visual-layering output block is mandatory for reconstruction and style transfer. Do not merge it into generic composition or spatial-construction prose. Report `unresolved` for unsupported production history or category rules rather than omitting the system.
+Keep visual layering distinct in analysis. Full blueprints expose a labeled block ordered by reference-specific importance; compact output includes only consequential layer rules. A simple system can be summarized in one sentence. Report consequential uncertainty, and omit irrelevant production-history fields from prose.
 
 For style transfer, retain the organization rules that survive subject replacement:
 
@@ -146,9 +146,9 @@ For style transfer, retain the organization rules that survive subject replaceme
 
 Treat exact source object IDs, layer counts, coordinates, and incidental crossings as source-specific. Recompute the target stack from its semantic groups, identity cues, focal roles, and density budget. Mark category-to-category rules inferred from a single example as provisional.
 
-Compile prompts in this order: target and visual hierarchy → density and composition → layer roles and spatial bands → decisive local occlusions and masks → visibility protections → production-stack conventions → object modeling and surface systems. Use exact object relations for reconstruction and role-based grammar for style transfer.
+Follow generation-blueprint-schema.md for final prompt order. Place a decisive layer relation in the ranked visual core; put other supported overlaps and visibility controls next to their target groups. Include production conventions only when they change the visible output. Use exact object relations for reconstruction and role-based grammar for style transfer.
 
-Use this minimum labeled human-readable block before object modeling:
+For detailed layer analysis, select applicable fields from this inventory; it does not require precedence over object modeling:
 
 - `Spatial-order status`
 - `Layer roles`
@@ -161,7 +161,7 @@ Use this minimum labeled human-readable block before object modeling:
 - `Failure signs`
 - `Acceptance checks`
 
-Do not compress the system into one composition bullet. Use `unresolved` where evidence is unavailable.
+Use one sentence for simple layer relations, expanding only consequential fields. Formal JSON keeps required fields with supported null/unresolved values. Compact prose need not show empty fields.
 
 ## 7. Failure and acceptance
 

@@ -1,256 +1,100 @@
-# Generation Blueprint Schema
+# Blueprint Output and Prompt Compilation
 
 ## Contents
 
-1. Reconstruction report sections
-2. Style-transfer output
-3. Machine-readable output
-4. Prompt compilation
+1. Authoritative priority policy
+2. Output depth
+3. Full-blueprint field inventory
+4. One prompt-compilation policy
+5. Machine-readable output
 
-## Default human-readable report
+## 1. Authoritative priority policy
 
-Begin with mode, desired fidelity, source/reference roles, illustration classification, classification confidence, and loaded subtype modules. For both modes, share the visual evidence once, then keep reconstruction and style-transfer outputs independent. Use the following Sections 1–13 for reconstruction unless the user requests another format.
+This file owns priority, prose output depth, and final prompt order for both task modes. Dimension and subtype references supply evidence questions and drawing rules; their local analysis sequences do not prescribe another final prompt order.
 
-## 1. Global visual conclusion
+Separate two kinds of obligation:
 
-Write compact, mechanism-based paragraphs for:
+- **Explicit user requirements:** requested identity, story/action, exact content, frozen colors/layout, and delivery constraints. Preserve them; do not silently demote them to fit inferred style rules.
+- **Source-derived mechanisms:** the visual relationships that carry the requested reconstruction or style identity. Rank by the perceptual change caused by losing each mechanism, its effect on the task, and its interaction with other mechanisms.
 
-- graphical modeling;
-- visual-layering system and visibility priorities;
-- object-modeling system and intensity limits;
-- color construction and role relationships;
-- fill mechanism;
-- shape and deformation;
-- volume and light;
-- detail distribution;
-- density rhythm and negative-space structure;
-- focal hierarchy, visual weight, motif grammar, narrative devices, and semantic grouping;
-- spatial construction.
+Usually 3–5 defining mechanisms summarize the image; use fewer or more when warranted. This is a focus aid, not a quota or a limit on explicit requirements. Prefer a coupled mechanism when components rely on one another, such as large silhouette + color-field separation, or lost edges + directional brushwork. Keep the underlying evidence distinguishable.
 
-Do not include crop history or reasoning narration.
+Assign hard/medium/soft priority and rank within each tier:
 
-## 2. Frame and camera
+- **hard:** loss breaks an explicit requirement or a defining visual relationship;
+- **medium:** supports identity with bounded variation;
+- **soft:** incidental variations with little effect on recognition or style;
+- **unresolved:** importance or evidence cannot support an established rule; high impact does not make uncertain evidence factual.
 
-Report:
+For a decisive mechanism, retain evidence, scope, priority reason, fixed behavior, allowed variation, and visible failure sign. In compact output, show the rule and the information that changes a user's decision; keep the rest internal. Merge duplicate constraints rather than promoting a whole checklist to hard.
 
-- frame orientation and aspect;
-- crop and frame crossings;
-- fixed view;
-- dominant visible faces;
-- camera height;
-- perspective strength;
-- framing distance;
-- unresolved camera ambiguity.
+No visual dimension has a permanent rank. Consider whole-image mass/focal relationships and source-specific drawing language together. Promote color, deformation, edge/brushwork, texture, gesture, layering, or density whenever the actual reference depends on them. Preserve required complexity and modeling as actively as upper limits.
 
-## 3. Composition and geometry skeleton
+Resolve conflicts by explicit user priority first, then supported defining mechanisms in rank order, then supporting and incidental detail. Try a compatible target mapping before relaxing a mechanism. Report any material tradeoff. Ask when explicit requirements conflict or the requested identity remains blocked; do not ask about every routine choice. A lower-ranked hard requirement is still required for an unqualified pass.
 
-Report:
+Keep importance, confidence, inspection sequence, report order, and model execution separate. Front-loading communicates intent; it is not a known model-weight parameter or a guarantee.
 
-- anchor object;
-- primary subject and major-object registry;
-- primary and secondary axes;
-- center of gravity;
-- density-zone map: meaningful bounds, level, area share or estimate, drivers, and boundary character;
-- largest continuous quiet field and its allowed interruptions;
-- density-peak count, cluster separation, transition direction, and breathing gaps;
-- primary-subject cleanliness and frame-edge accumulation;
-- object registry;
-- projected size and spacing;
-- for the primary subject and every major object:
-  - normalized projected center;
-  - projected bounding-box limits;
-  - canvas-width and canvas-height spans;
-  - bounding-box area as a fraction or percentage of the canvas;
-  - visible silhouette area as a fraction or percentage of the canvas;
-  - edge margins, frame crossings, and measurement status.
+## 2. Output depth
 
-Keep visible silhouette occupancy separate from bounding-box occupancy. If an occluded full shape is estimated, label that inferred value separately rather than replacing the visible value.
+Choose depth from the requested deliverable, not image complexity alone.
 
-## 4. Visual organization
+**Compact analysis (default):**
 
-Report each dimension as observation, evidence and scope, generation constraint, failure sign, and acceptance check:
+1. One sentence for task mode and overall visual identity, plus material source limits.
+2. A short ranked list of defining mechanisms, each phrased as a visible drawing/organization rule.
+3. Useful fixed/variable distinctions and target mapping/overflow decisions, when supplied.
+4. A short acceptance list aligned to the ranking and actual validation status.
 
-- focal hierarchy and viewing path;
-- visual weight and balance;
-- motif grammar;
-- graphic narrative devices;
-- semantic grouping.
+Keep classification metadata, loaded-file lists, audit ledgers, empty fields, and repeated evidence internal unless requested. A simple image does not require an exhaustive system report.
 
-Follow `visual-organization.md`. Record subtype-specific additions from the loaded modules without importing unused module fields.
+**Full blueprint:** begin with the same ranked summary, then expand the field inventory below. Give visual layering, object modeling, color relationships, density rhythm, and visual organization distinct labeled blocks ordered by their importance for this reference. Briefly summarize a simple system; expand its supported subfields only when they affect control or the user requests them. State material unknowns once. Report each rule once and refer to it from dependent sections.
 
-## 5. Object direction and depth
+**Prompt-only or generation request:** analyze internally, then deliver the executable prompt or requested image with only essential context. Do not prepend the full report. For both modes, compile separate prompts. A request to analyze alone does not authorize generation.
 
-For each directional object:
+**JSON:** use the existing formal schemas. Required JSON fields remain present, with empty lists/null/unresolved where supported by their field types. Schema completeness does not require displaying those fields in prose or copying them into a prompt.
 
-- connection/start endpoint;
-- outer/end endpoint;
-- endpoint screen positions;
-- endpoint near/far roles;
-- projected path;
-- depth trajectory;
-- visible faces;
-- perspective result.
+## 3. Full-blueprint field inventory
 
-## 6. Visual-layering system and hidden shapes
+This inventory is a reference for applicable fields, not a mandatory ordering of importance.
 
-Report:
+| System | Fields to preserve when applicable |
+| --- | --- |
+| Task and source | Mode, exactness, reference roles, type, conflicts, meaningful source limitations |
+| Composition/geometry | Frame/crop, projection, main/secondary axes, dominant mass, anchors, proportions, margins and crossings |
+| Reconstruction occupancy | Primary and major objects' centers, bounding-box limits, width/height spans, box area, visible silhouette area, edge margins, measurement status; separate inferred hidden envelope |
+| Direction/depth | Endpoint roles and screen positions, projected path, near/far roles, visible faces, convergence and foreshortening; preserve mixed projection |
+| Visual organization | Focal hierarchy/path, weight/counterweights, motif cadence, graphic devices, semantic groups and story action |
+| Visual layering | Spatial-order status, role families, decisive local overlaps/interlocks, contour ownership, visibility protections, masks/windows, recoverability of production order, target mapping and failure signs |
+| Object modeling | Recognition strategy, shape grammar, masses, modeling mode, value structure, light/material response, line-based volume, detail progression, exceptions, required effects and ceilings |
+| Color | Palette mode, frozen colors, roles/area relations, hue distances, temperature, values, saturation, adjacency/separation or supported blending |
+| Drawing surface | Silhouette/frame/internal-line hierarchy, edge behavior, fill, brush/texture scale, scope and local exceptions |
+| Density/capacity | Observed quiet/dense topology, peaks/gaps, subject cleanliness when present, relevant bounds and tolerances; required/candidate/incidental content, allocation and actual overflow decisions |
+| Target application | Recomputed anatomy, proportions, composition, semantic/layer/color roles; fixed rules, supported variables, source-specific content and hypotheses kept separate |
+| Validation | Priorities, concrete drift exclusions, acceptance criteria, source-audit status, generation status, actual tested scope and consequential uncertainties |
 
-- global spatial-order status and meaningful back-to-front bands;
-- decisive local occlusion relations, overlap types, contour ownership, and interlocking attachments;
-- visibility profiles: bounding-box occupancy, visible silhouette, inferred full envelope, visible fraction, protected cues, and allowed coverage;
-- masks, clipping, cutouts, windows, knockouts, shared borders, and transparent overlays;
-- production stages, outline redraw, text/finishing order, and recoverability of exact authoring history;
-- reusable layer roles, category order, overlap budget, visibility priority, and target mapping;
-- hidden geometry needed for reproduction;
-- alternate hypotheses and unresolved parts.
+Use object cards for source-specific reconstruction or decisive target exceptions. Do not repeat global rules on every object. Style-only tasks do not require a source object census or coordinate registry.
 
-Follow `layering-hidden-shapes.md`. Keep size, spatial depth, production order, and perceptual priority independent.
+## 4. One prompt-compilation policy
 
-## 7. Object-modeling system
+Use the following shared structure for reconstruction and style transfer. The ranked mechanisms inside it are dynamic.
 
-Report:
+1. **Task anchor:** briefly name mode, target or source identity, and actual reference roles. Include consequential explicit requirements; keep required text in a clearly identified exact-content block when substantial.
+2. **Ranked visual core:** state the defining mechanisms in priority order as positive drawing actions and visible relationships. Integrate necessary exclusions with the rule they qualify. Any dimension can lead this block.
+3. **Target application:** map recognition cues, action, main masses, composition and supporting content through those rules. Place capacity limits, layer/visibility relations, modeling bounds, color or mark behavior next to the objects/groups they govern. Include only content that fits the assessed capacity; all candidates may fit.
+4. **Remaining controls:** add only nonredundant supporting rules, local exceptions, exact content, and concrete exclusions that materially affect the task. Omit audit bookkeeping and speculative production history.
 
-- recognition strategy, shape grammar, and mass hierarchy;
-- global modeling mode and scoped exceptions;
-- value-plane count, light-to-dark order, value span, adjacent contrast, area relations, edge behavior, and gradient policy;
-- lighting ceiling for highlights, shadows, cast shadows, ambient occlusion, specular response, reflections, transparency, refraction, and glow;
-- material-response rules and forbidden expansions;
-- line-based volume roles;
-- object-detail density, protected clean masses, and progression across object tiers;
-- over-modeling and under-modeling signs plus acceptance checks.
+If a material noun may invite unsupported rendering, qualify that noun locally (for example, a flat opaque window with a graphic inset). Target identity may appear before these qualifications. Do not impose a universal density/clean-area/lighting contract before all target nouns.
 
-Follow `object-modeling.md`. Keep canvas-density rhythm separate from object-internal modeling density.
+Compile after target capacity and rule conflicts have been assessed. Keep the reusable style block independent from source identities and target-specific content; the task anchor and target mapping surround it. For a reusable prompt without a supplied target, provide a separate target-content slot. In reconstruction preserve the actual source geometry; in transfer recompute geometry from the new identity and organization grammar.
 
-## 8. Color relationship system
+Compress by merging repeated rules, retaining only decisive local exceptions, and dropping unneeded fields. Do not enforce a universal word cap or lose exact user requirements for brevity. Match the supplied output format and tool capabilities; never invent reference-strength parameters or numeric model weights.
 
-Report:
+## 5. Machine-readable output
 
-- palette mode and explicitly frozen colors;
-- functional color roles, regions, and approximate area shares;
-- hue-distance relations among major roles;
-- warm/cool/neutral allocation and spatial counterweights;
-- value ladder and saturation budget;
-- adjacency policies and separation devices;
-- color-adhesion failure signs and acceptance checks.
+Read `task-blueprint.schema.json` and the schemas referenced by the selected mode. Keep reconstruction and style-transfer payloads separate. The reconstruction `verification` field concerns source audit only.
 
-Follow `color-relationships.md`. Keep literal hue choices separate from transferable relations.
+Order the `mechanisms` array by requested importance, including within priority tiers; explain obligation source and conflicts in existing `reason`, `fixed`, `variable`, and uncertainty fields. This order is semantic and does not depend on JSON object-key order.
 
-## 9. Surface systems
+Use measured or explicitly estimated normalized positions and area fractions. Preserve measurement status; never substitute bounding-box area for visible silhouette area. Record numerical tolerances and qualitative acceptance conditions in the existing criterion/budget strings. Use null for unsupported numerical claims and unrun prompts/results. Empty density/layer lists are legitimate when there is no supported structure or no target to allocate; explain material limitations in the appropriate text field.
 
-Report:
-
-- color and fill;
-- material, light, and volume;
-- subject contours;
-- external frames and borders;
-- internal lines;
-- overall texture and distinctive local texture.
-
-## 10. Selected subtype findings
-
-For each loaded subtype module, report:
-
-- module name and evidence;
-- decisive findings;
-- generation constraints;
-- visible failure signs;
-- acceptance checks.
-
-Do not include unloaded subtype fields.
-
-## 11. Object detail cards
-
-For each object:
-
-- identity and role;
-- importance tier;
-- geometry and proportion;
-- frame position and occupancy, mandatory for the primary subject and major objects;
-- direction and visible faces;
-- attachment, layer role, local occlusion, visible fraction, protected cues, production-stage evidence, and crop;
-- object-modeling override, value planes, lighting ceiling, material response, line-based depth, detail density, and protected clean regions;
-- color, fill, material, and volume;
-- line treatment;
-- text, symbols, hardware, stickers, and decoration;
-- semantic group, focal role, visual-weight contribution, and narrative-device membership;
-- uncertainties.
-
-## 12. Generation constraints
-
-Separate:
-
-- hard constraints;
-- medium constraints;
-- soft constraints;
-- avoidances.
-
-Assign priorities dynamically from task intent and decisive style mechanisms. Record evidence, scope, priority reason, allowed variation and visible failure sign for each decisive rule. No dimension has a permanent priority: source geometry can be hard in reconstruction; line or texture behavior can be equally hard. Distinguish uncertainty from flexibility.
-
-## 13. Uncertainties
-
-List only uncertainties that affect reconstruction or generation.
-
-Add generation acceptance criteria, source-audit status, generation-validation status, and tested scope. Mark generation `not_run` without inspected outputs.
-
-## Style-transfer output
-
-1. Illustration classification, confidence, and loaded subtype modules.
-2. Overall visual system and decisive mechanisms, with supporting observations.
-3. Fixed rules, variables, source-specific content, and hypotheses/unknowns.
-4. Visual-layering system: spatial bands, local occlusion graph, overlap types, interlocks, contour ownership, visibility profiles, masks/clipping, production order, layer grammar, and hidden-shape limits.
-5. Object-modeling system: shape grammar, mass hierarchy, modeling mode, value structure, lighting ceiling, material response, line-based volume, object-detail density, object-tier rules, exceptions, and over/under-modeling signs.
-6. Palette mode and color relationship system: roles, area shares, hue-distance pattern, temperature allocation, value ladder, saturation budget, adjacency rules, and adhesion failures.
-7. Drawing transformations: recognition/simplification, layering/occlusion, deformation, line/edge, fill/color, light/volume, brushwork/texture, detail hierarchy, spatial organization, and typography when applicable.
-8. Visual organization: focal hierarchy and viewing path, visual weight, motif grammar, graphic narrative devices, and semantic grouping.
-9. Density rhythm and content-capacity gate: zone map, protected quiet fields and floors, density peaks, cluster separation, subject cleanliness, transition direction, cluster/text limits, required/candidate/incidental inventory, allocation ledger, overflow decisions, and target density budget.
-10. Selected subtype findings and their target application.
-11. Interactions and exceptions; transfer scope and unsupported categories.
-12. Target application when supplied, kept separate from reusable rules.
-13. Dynamic constraint priorities and concrete drift exclusions.
-14. Reusable style prompt when requested, plus a separate target-content block.
-15. Acceptance criteria, source-audit status, generation-validation status and tested scope.
-
-Section 4 is mandatory and must appear as a labeled block before object modeling. Use explicit subfields for spatial-order status, layer roles, local relations and overlap types, visibility profiles and protections, production-order evidence and recoverability, fixed rules, variables, target mapping, failure signs, and acceptance checks. Do not collapse it into drawing transformations, spatial organization, density rhythm, or interactions; use unresolved fields when evidence is insufficient.
-
-Follow style-transfer.md for rule derivation and generation-validation.md for acceptance. Keep source identities/counts/coordinates out of the reusable prompt unless explicitly frozen by the user.
-
-## Machine-readable output
-
-When the user requests JSON:
-
-- use `task-blueprint.schema.json` as the dual-mode envelope; resolve its local reference to the retained `generation-blueprint.schema.json` only for reconstruction payloads;
-- record one primary illustration type, up to two supporting types, classification evidence, confidence, and loaded modules;
-- use normalized coordinates only when measured or explicitly estimated;
-- encode canvas occupancy as a fraction from 0 to 1 and keep bounding-box area distinct from visible silhouette area;
-- use `null` or `unknown` rather than invented values;
-- encode the selected palette mode and the independent color relationship system; preserve measurement status for area shares;
-- encode the independent object-modeling system, including explicit ceilings, object-tier rules, clean-area measurement status, and over/under-modeling signs;
-- encode the density content-capacity gate: protected quiet-zone floors, cluster and text-group limits, required/candidate/incidental items, included-item allocation, overflow decisions, and measurement status;
-- encode the independent visual-layering system, including spatial-order status, local relations, overlap types, production-order recoverability, visibility profiles, and transfer grammar;
-- keep internal crop evidence outside the JSON unless requested;
-- include concise conclusions, not the full reasoning process.
-
-The envelope separates source audit from generation validation, requires evidence-linked mechanisms with priorities, and selects reconstruction, style_transfer, or both payloads. Each source binding identifies an actual available source and its role. Use null for unrun prompt/output fields. The reconstruction payload retains the original geometry format; its `verification` refers only to source audit. Do not fill reconstruction fields for style-only tasks.
-
-## Prompt compilation
-
-When the user requests a reconstruction prompt, compile the blueprint in this order, introducing the highest-priority style mechanisms alongside the main geometry rather than burying them under secondary details:
-
-1. frame and fixed camera result;
-2. first-read subject, viewing path, dominant weight, and counterweights;
-3. density budget, protected quiet zones, semantic groups, and graphic devices;
-4. anchor, primary subject, major-object placement, and composition skeleton;
-5. object count, frame occupancy, projected proportion, endpoints, and depth;
-6. visual-layering system: spatial bands, local occlusions, overlap types, contour ownership, masks/clipping, visibility profiles, and supported production stages;
-7. motif grammar and selected subtype treatment;
-8. recognition strategy, shape grammar, and mass hierarchy;
-9. modeling mode and object-tier rules; value-plane count/span/contrast; lighting ceiling; material response; line-based volume; object-detail density and protected clean masses;
-10. palette mode, color roles and area shares, hue-distance pattern, temperature allocation, value ladder, saturation budget, adjacency rules, then literal colors;
-11. fill and remaining surface systems;
-12. text, symbols, and decoration;
-13. avoidances, including unsupported layer and modeling expansion;
-14. preservation priority.
-
-Do not insert every audit detail. Preserve dynamically selected hard constraints before flexible details. Bind actual references to their stated roles when image inputs are available, without inventing model parameters.
-
-For style_transfer, compile: execution contract (quiet-zone floor/exclusions → cluster/text limits → clean-subject floor → overflow rule → modeling/value/light/material/line-volume/detail ceilings) → target identity and required recognition cues → first-read subject and viewing path → visual-weight relation → semantic groups and graphic devices → motif grammar → layer roles and spatial bands → local occlusions, overlap types, masks/clipping, visibility protections, and production conventions → target-specific mass mapping → only capacity-admitted supporting details inside their assigned clusters → selected subtype treatment → palette mode → color roles and area shares → hue-distance, temperature, value, saturation, and adjacency rules → literal colors → remaining spatial relationships → specific exclusions and preservation priorities. Keep the reusable style block independent of target nouns. Do not paste candidate pools into the prompt. For both, output separate prompts; do not concatenate constraints.
+Record actual source bindings and source-audit status separately from generated-output status. Without inspected output, use `not_run` and a null run context. JSON validity establishes the field contract, not effective prompting or successful generation.

@@ -2,7 +2,7 @@
 
 ## Required structure
 
-Analyze the five systems below independently. For every decisive finding, provide:
+Inspect the five systems below independently. Expand findings that affect this reference or target; keep simple systems brief. For every decisive finding, retain:
 
 - observed organization and evidence;
 - scope and confidence;
@@ -43,17 +43,10 @@ For transfer, preserve device roles and interactions. Recompute their content, s
 
 Group elements by story, function, topic, or visual module. Record group boundaries, dominant and supporting groups, membership, internal hierarchy, and the connectors between groups. Separate semantic grouping from simple proximity when color, frames, arrows, or repetition create the group.
 
-For transfer, assign every requested target element to one group and one role. Consolidate or omit elements that have no role. Preserve the reference's group hierarchy and connection grammar without importing source content.
+For transfer, assign every included target element to a group and role. Preserve required recognition and story content; consolidate or omit optional elements with no useful role. Preserve the reference's group hierarchy and connection grammar without importing source content.
 
 ## Prompt and acceptance
 
-Compile organization before surface styling:
+Follow generation-blueprint-schema.md for the final prompt order. Put decisive focal, action, weight, motif, or grouping relationships in the ranked visual core. Place remaining organization controls near the target groups they govern. Color, edge, brushwork, or other mechanisms may precede organization when they carry more of the reference's identity.
 
-1. first-read subject and ordered viewing path;
-2. dominant mass and counterweights;
-3. protected quiet zones and density clusters;
-4. semantic groups and their graphic devices;
-5. motif families and repetition cadence;
-6. line, color, fill, texture, and subtype-specific rendering.
-
-At acceptance, inspect the full frame, thumbnail, and mildly blurred image. Confirm first-read order, weight balance, density topology, group separation, device function, and motif cadence before checking small decorative accuracy.
+At acceptance, inspect the full frame and a thumbnail; add mild blur when it clarifies a consequential mass or density claim. Confirm source-specific viewing order, balance, grouping, narrative function, and cadence before incidental decorative accuracy. Do not impose a universal focal path on an intentionally diffuse composition.

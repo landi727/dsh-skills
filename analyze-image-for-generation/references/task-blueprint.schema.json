@@ -39,6 +39,7 @@
       ]
     },
     "mechanisms": {
+      "description": "Ordered by requested importance, including within priority tiers. Explain explicit obligations versus source-derived rules and material tradeoffs in reason. This order does not claim model-internal weights.",
       "type": "array",
       "items": {
         "type": "object", "additionalProperties": false,

@@ -12,7 +12,7 @@
 
 ## Transfer and prompt
 
-Define a limited fragment system, edge taxonomy, partial layer stack, overlap and interlock rules, fragment visibility priorities, object-modeling profile, print-color relationship, and ground material. Assign fragments to semantic groups and density clusters. Rebuild target content from new fragments while preserving the assembly grammar.
+Define the source-supported fragment system, edge taxonomy, partial layer stack, overlap/interlock rules, visibility, modeling, print-color relationship, and ground material. Follow generation-blueprint-schema.md for prompt order and prioritize the decisive assembly mechanisms. Assign fragments to semantic groups and density clusters. Rebuild target content from new fragments while preserving the assembly grammar.
 
 State the scale and location of print artifacts, fragment-level tonal modeling, and cast-shadow ceiling. Avoid global paper noise, random torn edges, or added three-dimensional material effects when the reference uses clean flat fragments.
 

@@ -48,7 +48,7 @@ Record the approximate canvas share and spatial role of warm, cool, and neutral 
 
 ### Value ladder
 
-Order the principal roles from lightest to darkest and record which adjacent masses depend on value contrast. Include the functions of the lightest and darkest colors. A recolored palette must retain enough steps for the subject, background, nested scenes, text, and outlines to remain separable in grayscale.
+Order the principal roles from lightest to darkest and record which adjacent masses depend on value contrast. Include the functions of the lightest and darkest colors. Retain the source-supported value structure where it carries separation. Do not require every role to separate in grayscale when the source uses near-value hue contrasts or lost edges. Evaluate those relations in color and protect required text/identity readability separately.
 
 ### Adjacency matrix
 
@@ -58,7 +58,10 @@ For each pair that touches or nearly touches, specify one policy:
 - a dark or light outline is required;
 - a neutral buffer or gap is required;
 - adjacency should be avoided;
+- blending or a lost boundary is supported and should be retained;
 - relation is unresolved.
+
+In formal JSON, encode supported blending as adjacency policy `direct` and describe the intended lost boundary in `separation_device`; no separator is required for that relation.
 
 Record the actual separation device: hue distance, value contrast, temperature contrast, outline, neutral gap, texture break, or a combination. Do not rely on outlines to repair every weak color relationship.
 
@@ -79,7 +82,7 @@ When recoloring, change role colors as a coordinated set. Do not shift every sou
 
 ## 5. Detect color adhesion
 
-Treat color adhesion as a critical failure when two or more large neighboring roles combine most of these conditions:
+Treat color adhesion as a failure only where the reference or explicit task requires separation and the result unintentionally loses that relationship. The following conditions are warning evidence, not independent universal failure criteria:
 
 - near hue families;
 - the same temperature role;
@@ -87,11 +90,11 @@ Treat color adhesion as a critical failure when two or more large neighboring ro
 - similar saturation bands;
 - no effective outline, neutral buffer, or contrasting field.
 
-Also flag a system when its counter-color is fragmented into tiny accents and can no longer balance the dominant field, or when environmental recoloring collapses background, subject, and supporting scenery into one warm or cool mass.
+Also flag a lost counter-color balance or a collapsed environmental palette when that separation/balance is a declared defining mechanism. Preserve source-supported monochrome fields, atmospheric blending, near-value hue contrast, and lost edges. Do not add outlines or neutral buffers solely to pass a generic separation test.
 
 ## 6. Audit and acceptance
 
-Inspect the source or generated result in four views:
+Start with the full frame and select additional views when they resolve a consequential color claim:
 
 - **full frame**: role locations, area balance, and spatial temperature allocation;
 - **thumbnail**: immediate separation of the largest masses and bounded accents;

@@ -127,23 +127,11 @@ Every override must name the affected field and evidence. Do not let one glossy,
 
 ## 9. Transfer and prompt compilation
 
-Before target nouns are compiled, write a compact modeling contract containing the global mode, primary-subject clean-area floor, supported value-plane range, gradient policy, lighting ceiling, allowed line-volume functions, object-tier detail progression, and overflow treatment for structural/decorative detail. This contract must precede nouns such as glass, metal, helmet, cockpit, armor, building, fabric, water, or machinery that may invite unsupported rendering.
+Compile using generation-blueprint-schema.md. Preserve shape grammar, recognition cues, and required modeling behavior along with supported upper bounds. State positive rendering actions before concrete exclusions; a dense or volumetric source must retain its defining complexity.
 
-Map a target in this order:
+Place decisive shape/modeling mechanisms in the ranked visual core and attach other controls to the affected object tier or material noun. A local qualification such as an opaque flat window is sufficient when that is the only material risk. No universal lighting/detail contract or material-before-identity sequence is required.
 
-1. recognition cues and shape grammar;
-2. main and secondary mass hierarchy;
-3. modeling mode and object-tier rules;
-4. value-plane count, span, contrast, and edge behavior;
-5. lighting ceiling;
-6. material response and forbidden expansion;
-7. line-based volume rules;
-8. object-detail density and protected clean areas;
-9. object names, materials, hardware, and decoration.
-
-Place this block before material-rich target nouns. Preserve the reusable modeling block across targets; keep target-specific mass mapping separate.
-
-When the source supports estimates, convert object-detail density into bounded limits: clean-area floor, structural-division range, highlight/shadow footprint, and allowed hardware or microdetail level by object tier. When measurement is unsupported, use qualitative ceilings with named prohibited expansions. Do not rely on a final negative-prompt list to reverse modeling already invited by earlier material nouns.
+Use quantitative bounds only when they help control an important visual relationship. Distinguish observed source values from chosen target bounds and record measurement status. For uncertain estimates, use ranges/tolerances or named qualitative limits; do not fail a result for a marginal numerical difference unsupported by measurement. Protect clean masses only when the source uses them.
 
 ## 10. Failure and acceptance
 
@@ -157,4 +145,4 @@ Treat these as over-modeling failures when unsupported by the source:
 
 Treat missing decisive planes, value masses, shadows, edge transitions, or material responses as under-modeling failures in references that depend on them.
 
-Inspect full-frame and representative objects at normal size, thumbnail, grayscale, and mild blur. Compare modeling mode, mass hierarchy, value-plane count, value span, highlight/shadow footprint, line-based depth, material response, clean-area share, and detail progression across object tiers. Record `pass`, `partial`, `fail`, or `not_run` separately from source-analysis confidence.
+Inspect the full frame and representative objects. Select thumbnail, grayscale, or mild blur only when they clarify a consequential modeling claim. Compare modeling mode, mass hierarchy, value-plane count, value span, highlight/shadow footprint, line-based depth, material response, clean-area share, and detail progression across object tiers. Record `pass`, `partial`, `fail`, or `not_run` separately from source-analysis confidence.

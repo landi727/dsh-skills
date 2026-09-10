@@ -81,11 +81,11 @@ Translate the map into a density budget for generation:
 - preserve breathing gaps between clusters and clean areas inside the main subject;
 - remove or consolidate requested elements that exceed the reference's density budget.
 
-Avoid vague prompt language such as “use negative space” or “keep a balanced composition.” State the visible allocation and exclusions. Place the density budget before long lists of supporting objects so generation does not scatter every item across the frame.
+Avoid vague prompt language such as “use negative space” or “keep a balanced composition.” State visible allocation and relevant exclusions. Assess capacity before compiling supporting content; final prompt order follows generation-blueprint-schema.md. Put decisive density rules in the ranked core and remaining controls near the affected cluster.
 
 ## Make the budget executable
 
-When target content or a generation prompt is supplied, the density block must include:
+When several target items compete for space or density is decisive, build the applicable fields below internally; full blueprints expose useful conclusions and compact output only consequential allocation decisions:
 
 - `protected quiet zones`: named regions, minimum area share when estimable, continuity requirement, allowed low-activity interruptions, prohibited element classes, and measurement status;
 - `cluster budget`: supported cluster-count range, each cluster's role and region, maximum element or module range, maximum text-group range, and required breathing gap;
@@ -94,7 +94,7 @@ When target content or a generation prompt is supplied, the density block must i
 - `allocation ledger`: one cluster or permitted interruption for every included secondary element;
 - `overflow policy`: remove incidental items → select among candidates → merge related cues → embed them in an existing device → surface a conflict among required items.
 
-Use ranges or qualitative floors when exact measurement is unsupported. Do not invent percentages solely to make a prompt appear precise. Once stated, treat the minimum quiet share, maximum cluster count, maximum text-group count, and clean-area floor as generation gates rather than optional aspirations.
+Use ranges or qualitative floors when exact measurement is unsupported. Do not invent percentages solely to make a prompt appear precise. Separate source observations from chosen target constraints. Use ranges or tolerances for estimated area/complexity and state which criteria are critical. A marginal difference from an uncertain estimate is not an automatic failure. A reference with uniform high activity can require high density and no protected quiet field.
 
 User labels control default capacity semantics:
 
@@ -102,7 +102,7 @@ User labels control default capacity semantics:
 - “available,” “optional,” “may use,” and “environment cues” are candidate pools unless the user explicitly requests all of them;
 - unlabeled decorative suggestions are incidental when they do not carry identity, story, or required information.
 
-Do not paste candidate pools into the final prompt. Select only the items that fit the cluster budget. A prompt containing every candidate has failed the capacity gate even before generation.
+Do not paste an unassessed candidate pool into the final prompt. Select items by story role and combined visual load. All candidates may be included when each has a supported allocation and the complete composition fits; deletion is not a prerequisite for passing.
 
 ## Acceptance check
 
@@ -120,10 +120,10 @@ Mark density rhythm as failed when the output spreads activity broadly across th
 
 Treat any of these as a critical density failure when the source depends on quiet/dense contrast:
 
-- a protected quiet zone falls below its stated floor or loses continuity;
+- a critical protected quiet zone loses its defining continuity or falls meaningfully outside the agreed bound and tolerance;
 - the cluster or text-group maximum is exceeded;
 - an unallocated candidate appears as an independent object;
-- primary-subject clean masses are subdivided below their stated floor;
+- primary-subject clean masses are subdivided enough to violate their critical bound after accounting for estimation uncertainty;
 - dense clusters merge because their breathing gaps disappear.
 
 Content completeness does not compensate for a critical density failure. Missing candidate items are acceptable when the capacity gate intentionally omitted them.

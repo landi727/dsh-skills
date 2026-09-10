@@ -10,7 +10,7 @@
 
 ## Purpose
 
-Write a compact but information-dense conclusion about the image's visible construction. Omit sampling history and reasoning narration; retain degree, scope, and decisive exceptions.
+Scan the image across the dimensions below, then lead with its ranked defining mechanisms. Expand dimensions in proportion to their effect on the requested identity. Omit sampling history and reasoning narration; retain degree, scope, and decisive exceptions. These section numbers are an inspection aid, not output or prompt priority.
 
 Do not substitute style labels for mechanisms. If a label is useful, place it only after describing the visible construction.
 
@@ -163,7 +163,7 @@ Describe:
 
 ## Writing rules
 
-- Write one compact paragraph per dimension when the user requests a full blueprint.
+- In a full blueprint, give applicable systems distinct blocks ordered by importance; a simple system can take one sentence. In compact output, show the ranked defining mechanisms rather than every dimension.
 - State the conclusion directly; do not list the crops or comparisons used to reach it.
 - Use “global,” “dominant,” “local,” or “mixed” when scope matters.
 - State important exceptions in the same paragraph.
