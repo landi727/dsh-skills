@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chatgpt.com/schemas/analyze-image-for-generation/object-modeling.schema.json",
+  "title": "Executable Object Modeling System",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "modeling_mode",
+    "evidence",
+    "scope",
+    "confidence",
+    "recognition_strategy",
+    "shape_grammar",
+    "value_structure",
+    "lighting",
+    "material_rules",
+    "line_volume",
+    "detail_density",
+    "object_tier_rules",
+    "scope_overrides",
+    "fixed_rules",
+    "variable_rules",
+    "over_modeling_signs",
+    "under_modeling_signs",
+    "acceptance_checks"
+  ],
+  "properties": {
+    "modeling_mode": {
+      "enum": ["none_flat", "symbolic_flat", "discrete_faceted", "soft_modeled", "continuous_volumetric", "mixed", "unresolved"]
+    },
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "scope": {"type": "string"},
+    "confidence": {"enum": ["observed", "supported_inference", "hypothesis", "unresolved"]},
+    "recognition_strategy": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "shape_grammar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primitives", "mass_hierarchy", "mass_complexity", "connections", "curve_corner_behavior", "deformation", "silhouette_dependency", "protected_clean_masses"],
+      "properties": {
+        "primitives": {"type": "array", "items": {"type": "string"}},
+        "mass_hierarchy": {"type": "array", "items": {"type": "string"}},
+        "mass_complexity": {"type": "string"},
+        "connections": {"type": "array", "items": {"type": "string"}},
+        "curve_corner_behavior": {"type": "string"},
+        "deformation": {"type": "string"},
+        "silhouette_dependency": {"type": "string"},
+        "protected_clean_masses": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "value_structure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plane_count", "measurement_status", "role_order", "value_span", "adjacent_contrast", "plane_area_relation", "edge_behavior", "gradient_policy"],
+      "properties": {
+        "plane_count": {"type": ["integer", "null"], "minimum": 1},
+        "measurement_status": {"enum": ["measured", "estimated", "unresolved"]},
+        "role_order": {"type": "array", "items": {"type": "string"}},
+        "value_span": {"enum": ["minimal", "low", "medium", "high", "mixed", "unresolved"]},
+        "adjacent_contrast": {"enum": ["minimal", "low", "medium", "high", "mixed", "unresolved"]},
+        "plane_area_relation": {"type": "string"},
+        "edge_behavior": {"type": "string"},
+        "gradient_policy": {"enum": ["absent", "local_only", "broad", "continuous", "mixed", "unresolved"]}
+      }
+    },
+    "lighting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["logic", "highlight_intensity", "highlight_behavior", "shadow_intensity", "shadow_behavior", "cast_shadow_policy", "ambient_occlusion_policy", "specular_policy", "reflection_policy", "transparency_refraction_glow"],
+      "properties": {
+        "logic": {"enum": ["none", "symbolic_graphic", "simplified_directional", "physically_coherent", "mixed", "unresolved"]},
+        "highlight_intensity": {"$ref": "#/$defs/intensity"},
+        "highlight_behavior": {"type": "string"},
+        "shadow_intensity": {"$ref": "#/$defs/intensity"},
+        "shadow_behavior": {"type": "string"},
+        "cast_shadow_policy": {"enum": ["absent", "local_only", "systematic", "mixed", "unresolved"]},
+        "ambient_occlusion_policy": {"enum": ["absent", "local_only", "systematic", "mixed", "unresolved"]},
+        "specular_policy": {"enum": ["absent", "trace", "restrained", "pronounced", "dominant", "mixed", "unresolved"]},
+        "reflection_policy": {"enum": ["absent", "trace", "restrained", "pronounced", "dominant", "mixed", "unresolved"]},
+        "transparency_refraction_glow": {"type": "string"}
+      }
+    },
+    "material_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target_scope", "recognition_cues", "response", "allowed_effects", "forbidden_expansions"],
+        "properties": {
+          "target_scope": {"type": "string"},
+          "recognition_cues": {"type": "array", "items": {"type": "string"}},
+          "response": {"enum": ["flat_symbolic", "matte", "semi_matte", "glossy", "transparent_flat", "transparent_optical", "textural", "mixed", "unresolved"]},
+          "allowed_effects": {"type": "array", "items": {"type": "string"}},
+          "forbidden_expansions": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "line_volume": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["silhouette_role", "structural_line_role", "turning_line_policy", "thickness_line_policy", "perspective_line_policy", "density", "extra_geometry_policy"],
+      "properties": {
+        "silhouette_role": {"type": "string"},
+        "structural_line_role": {"type": "string"},
+        "turning_line_policy": {"enum": ["absent", "restricted", "allowed", "dominant", "mixed", "unresolved"]},
+        "thickness_line_policy": {"enum": ["absent", "restricted", "allowed", "dominant", "mixed", "unresolved"]},
+        "perspective_line_policy": {"enum": ["absent", "restricted", "allowed", "dominant", "mixed", "unresolved"]},
+        "density": {"$ref": "#/$defs/density"},
+        "extra_geometry_policy": {"type": "string"}
+      }
+    },
+    "detail_density": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clean_area_share", "measurement_status", "identity_detail", "structural_detail", "decorative_detail", "surface_microdetail", "mark_scale", "concentration", "protected_clean_regions"],
+      "properties": {
+        "clean_area_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "measurement_status": {"enum": ["measured", "estimated", "unresolved"]},
+        "identity_detail": {"$ref": "#/$defs/density"},
+        "structural_detail": {"$ref": "#/$defs/density"},
+        "decorative_detail": {"$ref": "#/$defs/density"},
+        "surface_microdetail": {"$ref": "#/$defs/density"},
+        "mark_scale": {"type": "string"},
+        "concentration": {"type": "string"},
+        "protected_clean_regions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "object_tier_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tier", "modeling_mode", "value_plane_rule", "detail_level", "material_intensity", "simplification", "prohibited_expansion"],
+        "properties": {
+          "tier": {"enum": ["primary_subject", "major_object", "supporting_object", "background_element", "nested_scene", "other"]},
+          "modeling_mode": {"enum": ["none_flat", "symbolic_flat", "discrete_faceted", "soft_modeled", "continuous_volumetric", "mixed", "unresolved"]},
+          "value_plane_rule": {"type": "string"},
+          "detail_level": {"$ref": "#/$defs/density"},
+          "material_intensity": {"$ref": "#/$defs/intensity"},
+          "simplification": {"type": "string"},
+          "prohibited_expansion": {"type": "string"}
+        }
+      }
+    },
+    "scope_overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target_scope", "field", "override", "evidence"],
+        "properties": {
+          "target_scope": {"type": "string"},
+          "field": {"type": "string"},
+          "override": {"type": "string"},
+          "evidence": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "fixed_rules": {"type": "array", "items": {"type": "string"}},
+    "variable_rules": {"type": "array", "items": {"type": "string"}},
+    "over_modeling_signs": {"type": "array", "items": {"type": "string"}},
+    "under_modeling_signs": {"type": "array", "items": {"type": "string"}},
+    "acceptance_checks": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "intensity": {"enum": ["none", "trace", "restrained", "pronounced", "dominant", "mixed", "unresolved"]},
+    "density": {"enum": ["none", "low", "medium", "high", "mixed", "unresolved"]}
+  }
+}

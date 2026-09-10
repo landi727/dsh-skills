@@ -1,0 +1,773 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chatgpt.com/schemas/analyze-image-for-generation/generation-blueprint.schema.json",
+  "title": "Reference Image Generation Blueprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source",
+    "global_visual_conclusion",
+    "object_modeling_system",
+    "color_system",
+    "camera",
+    "composition_skeleton",
+    "visual_organization",
+    "objects",
+    "layering_system",
+    "surface_systems",
+    "generation_constraints",
+    "uncertainties"
+  ],
+  "properties": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image_count", "frame_orientation", "source_limitations"],
+      "properties": {
+        "image_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pixel_size": {
+          "type": ["array", "null"],
+          "prefixItems": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "integer",
+              "minimum": 1
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "frame_orientation": {
+          "type": "string",
+          "enum": ["portrait", "landscape", "square", "mixed", "unknown"]
+        },
+        "aspect_ratio": {
+          "type": ["string", "null"]
+        },
+        "source_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "global_visual_conclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "graphical_modeling",
+        "visual_layering",
+        "color_construction",
+        "fill_mechanism",
+        "shape_and_deformation",
+        "volume_and_light",
+        "detail_distribution",
+        "density_rhythm",
+        "spatial_construction"
+      ],
+      "properties": {
+        "graphical_modeling": {
+          "type": "string"
+        },
+        "visual_layering": {
+          "type": "string"
+        },
+        "color_construction": {
+          "type": "string"
+        },
+        "fill_mechanism": {
+          "type": "string"
+        },
+        "shape_and_deformation": {
+          "type": "string"
+        },
+        "volume_and_light": {
+          "type": "string"
+        },
+        "detail_distribution": {
+          "type": "string"
+        },
+        "density_rhythm": {
+          "type": "string"
+        },
+        "spatial_construction": {
+          "type": "string"
+        }
+      }
+    },
+    "object_modeling_system": {
+      "$ref": "object-modeling.schema.json"
+    },
+    "color_system": {
+      "$ref": "color-relationship.schema.json"
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fixed_view",
+        "view_description",
+        "camera_height",
+        "perspective_strength",
+        "visible_faces",
+        "framing",
+        "uncertainty"
+      ],
+      "properties": {
+        "fixed_view": {
+          "type": ["boolean", "null"]
+        },
+        "view_description": {
+          "type": "string"
+        },
+        "camera_height": {
+          "type": "string",
+          "enum": [
+            "high",
+            "slightly_high",
+            "eye_level",
+            "slightly_low",
+            "low",
+            "flattened_or_not_recoverable",
+            "unknown"
+          ]
+        },
+        "perspective_strength": {
+          "type": "string",
+          "enum": [
+            "near_orthographic",
+            "weak",
+            "ordinary",
+            "strong",
+            "wide_angle",
+            "mixed_or_inconsistent",
+            "unknown"
+          ]
+        },
+        "visible_faces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "framing": {
+          "type": "string"
+        },
+        "uncertainty": {
+          "type": "string"
+        }
+      }
+    },
+    "composition_skeleton": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "anchor_object_id",
+        "primary_subject_id",
+        "major_object_ids",
+        "primary_axes",
+        "secondary_axes",
+        "center_of_gravity",
+        "density_distribution",
+        "negative_space",
+        "density_rhythm",
+        "frame_contacts"
+      ],
+      "properties": {
+        "anchor_object_id": {
+          "type": ["string", "null"]
+        },
+        "primary_subject_id": {
+          "type": ["string", "null"]
+        },
+        "major_object_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "primary_axes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secondary_axes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "center_of_gravity": {
+          "type": "string"
+        },
+        "density_distribution": {
+          "type": "string"
+        },
+        "negative_space": {
+          "type": "string"
+        },
+        "density_rhythm": {
+          "$ref": "#/$defs/densityRhythm"
+        },
+        "frame_contacts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "visual_organization": {
+      "$ref": "#/$defs/visualOrganization"
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/objectCard"
+      }
+    },
+    "layering_system": {
+      "$ref": "layering-system.schema.json"
+    },
+    "surface_systems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "color",
+        "fill",
+        "material_volume_light",
+        "line_system",
+        "texture"
+      ],
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "fill": {
+          "type": "string"
+        },
+        "material_volume_light": {
+          "type": "string"
+        },
+        "line_system": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "subject_contours",
+            "external_borders",
+            "internal_lines"
+          ],
+          "properties": {
+            "subject_contours": {
+              "$ref": "#/$defs/scopedConclusion"
+            },
+            "external_borders": {
+              "$ref": "#/$defs/scopedConclusion"
+            },
+            "internal_lines": {
+              "$ref": "#/$defs/scopedConclusion"
+            }
+          }
+        },
+        "texture": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["overall", "distinctive_local"],
+          "properties": {
+            "overall": {
+              "type": "string"
+            },
+            "distinctive_local": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "generation_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hard", "medium", "soft", "avoid"],
+      "properties": {
+        "hard": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "medium": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "soft": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "avoid": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "unresolved_claims"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["completed", "partial", "not_run"]
+        },
+        "unresolved_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "normalizedPoint": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "origin": {
+          "type": "string",
+          "enum": ["top_left"]
+        }
+      }
+    },
+    "normalizedBox": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["left", "top", "right", "bottom", "origin"],
+      "properties": {
+        "left": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "top": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "right": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "bottom": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "origin": {
+          "type": "string",
+          "enum": ["top_left"]
+        }
+      }
+    },
+    "frameOccupancy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bounding_box",
+        "width_fraction",
+        "height_fraction",
+        "bounding_box_area_fraction",
+        "visible_silhouette_area_fraction",
+        "position_description",
+        "measurement_status"
+      ],
+      "properties": {
+        "bounding_box": {
+          "$ref": "#/$defs/normalizedBox"
+        },
+        "width_fraction": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "height_fraction": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "bounding_box_area_fraction": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "visible_silhouette_area_fraction": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "inferred_unoccluded_area_fraction": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "inference_note": {
+          "type": ["string", "null"]
+        },
+        "position_description": {
+          "type": "string"
+        },
+        "measurement_status": {
+          "type": "string",
+          "enum": ["measured", "estimated", "not_recoverable"]
+        }
+      }
+    },
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "screen_position",
+        "depth_role",
+        "description"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["connection", "start", "outer", "end", "unknown"]
+        },
+        "screen_position": {
+          "$ref": "#/$defs/normalizedPoint"
+        },
+        "depth_role": {
+          "type": "string",
+          "enum": ["near", "far", "equal", "ambiguous"]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "projectedSize": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "length",
+        "thickness",
+        "visible_area",
+        "relative_to_anchor"
+      ],
+      "properties": {
+        "length": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "thickness": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "visible_area": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "unit": {
+          "type": "string",
+          "enum": ["canvas_width", "canvas_height", "anchor_length", "anchor_thickness", "relative", "unknown"]
+        },
+        "relative_to_anchor": {
+          "type": "string"
+        }
+      }
+    },
+    "objectAppearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "color",
+        "fill",
+        "material",
+        "volume",
+        "subject_contour",
+        "external_border",
+        "internal_lines",
+        "text_symbols_decoration"
+      ],
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "fill": {
+          "type": "string"
+        },
+        "material": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "subject_contour": {
+          "type": "string"
+        },
+        "external_border": {
+          "type": "string"
+        },
+        "internal_lines": {
+          "type": "string"
+        },
+        "text_symbols_decoration": {
+          "type": "string"
+        }
+      }
+    },
+    "objectCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "importance": {
+                "enum": ["primary_subject", "major_object"]
+              }
+            },
+            "required": ["importance"]
+          },
+          "then": {
+            "required": ["frame_occupancy"]
+          }
+        }
+      ],
+      "required": [
+        "id",
+        "identity",
+        "role",
+        "importance",
+        "geometry",
+        "projected_center",
+        "projected_size",
+        "endpoints",
+        "projected_direction",
+        "depth_trajectory",
+        "visible_faces",
+        "attachment",
+        "frame_contact",
+        "layer_role",
+        "local_occlusion_summary",
+        "visibility_summary",
+        "production_stage_evidence",
+        "appearance",
+        "uncertainties"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identity": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "importance": {
+          "type": "string",
+          "enum": [
+            "primary_subject",
+            "major_object",
+            "supporting_object",
+            "background_element",
+            "uncertain"
+          ]
+        },
+        "geometry": {
+          "type": "string"
+        },
+        "projected_center": {
+          "$ref": "#/$defs/normalizedPoint"
+        },
+        "projected_size": {
+          "$ref": "#/$defs/projectedSize"
+        },
+        "frame_occupancy": {
+          "$ref": "#/$defs/frameOccupancy"
+        },
+        "endpoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/endpoint"
+          },
+          "minItems": 0,
+          "maxItems": 2
+        },
+        "projected_direction": {
+          "type": "string"
+        },
+        "depth_trajectory": {
+          "type": "string",
+          "enum": [
+            "toward_viewer",
+            "away_into_scene",
+            "parallel_to_image_plane",
+            "mixed",
+            "ambiguous",
+            "not_applicable"
+          ]
+        },
+        "visible_faces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "attachment": {
+          "type": "string"
+        },
+        "frame_contact": {
+          "type": "string"
+        },
+        "layer_role": {
+          "type": "string"
+        },
+        "local_occlusion_summary": {
+          "type": "string"
+        },
+        "visibility_summary": {
+          "type": "string"
+        },
+        "production_stage_evidence": {
+          "type": "string"
+        },
+        "appearance": {
+          "$ref": "#/$defs/objectAppearance"
+        },
+        "semantic_group": {
+          "type": "string"
+        },
+        "focal_role": {
+          "type": "string"
+        },
+        "visual_weight_contribution": {
+          "type": "string"
+        },
+        "narrative_device_membership": {
+          "type": "string"
+        },
+        "uncertainties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "visualOrganizationDimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observation", "evidence", "scope", "generation_constraint", "failure_sign", "acceptance_check"],
+      "properties": {
+        "observation": {"type": "string"},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "scope": {"type": "string"},
+        "generation_constraint": {"type": "string"},
+        "failure_sign": {"type": "string"},
+        "acceptance_check": {"type": "string"}
+      }
+    },
+    "visualOrganization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["focal_hierarchy", "visual_weight", "motif_grammar", "narrative_devices", "semantic_grouping"],
+      "properties": {
+        "focal_hierarchy": {"$ref": "#/$defs/visualOrganizationDimension"},
+        "visual_weight": {"$ref": "#/$defs/visualOrganizationDimension"},
+        "motif_grammar": {"$ref": "#/$defs/visualOrganizationDimension"},
+        "narrative_devices": {"$ref": "#/$defs/visualOrganizationDimension"},
+        "semantic_grouping": {"$ref": "#/$defs/visualOrganizationDimension"}
+      }
+    },
+    "densityZone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["region", "level", "area_share", "drivers", "boundary", "measurement_status"],
+      "properties": {
+        "region": {"type": "string"},
+        "level": {"enum": ["quiet", "transition", "medium", "dense", "unresolved"]},
+        "area_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "drivers": {"type": "array", "items": {"type": "string"}},
+        "boundary": {"type": "string"},
+        "measurement_status": {"enum": ["measured", "estimated", "unresolved"]}
+      }
+    },
+    "densityRhythm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zones", "largest_quiet_field", "density_peaks", "cluster_separation", "transition_pattern", "subject_cleanliness", "generation_budget", "failure_signs"],
+      "properties": {
+        "zones": {"type": "array", "items": {"$ref": "#/$defs/densityZone"}},
+        "largest_quiet_field": {"type": "string"},
+        "density_peaks": {"type": "array", "items": {"type": "string"}},
+        "cluster_separation": {"type": "string"},
+        "transition_pattern": {"type": "string"},
+        "subject_cleanliness": {"type": "string"},
+        "generation_budget": {"type": "array", "items": {"type": "string"}},
+        "failure_signs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "scopedConclusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["conclusion", "scope", "exceptions"],
+      "properties": {
+        "conclusion": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string",
+          "enum": ["global", "dominant", "local", "mixed", "unresolved"]
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

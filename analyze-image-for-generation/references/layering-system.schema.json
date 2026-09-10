@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chatgpt.com/schemas/analyze-image-for-generation/layering-system.schema.json",
+  "title": "Visual Layering System",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence", "scope", "confidence", "spatial_order", "production_order", "visibility_profiles", "layer_grammar", "hidden_shape_hypotheses", "fixed_rules", "variables", "failure_signs", "acceptance_checks"],
+  "properties": {
+    "evidence": {"$ref": "#/$defs/strings"},
+    "scope": {"type": "string"},
+    "confidence": {"$ref": "#/$defs/confidence"},
+    "spatial_order": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order_status", "global_layers", "local_relations", "interlocks"],
+      "properties": {
+        "order_status": {"enum": ["total", "partial", "multiple_local", "unresolved"]},
+        "global_layers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["index", "role", "contents", "evidence", "confidence"],
+            "properties": {
+              "index": {"type": "integer", "minimum": 0},
+              "role": {"type": "string"},
+              "contents": {"$ref": "#/$defs/strings"},
+              "evidence": {"$ref": "#/$defs/strings"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            }
+          }
+        },
+        "local_relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rear", "front", "region", "overlap_type", "front_edge_behavior", "rear_edge_behavior", "relation_elsewhere", "evidence", "confidence"],
+            "properties": {
+              "rear": {"type": "string"},
+              "front": {"type": "string"},
+              "region": {"type": "string"},
+              "overlap_type": {"$ref": "#/$defs/overlapType"},
+              "front_edge_behavior": {"type": "string"},
+              "rear_edge_behavior": {"type": "string"},
+              "relation_elsewhere": {"type": "string"},
+              "evidence": {"$ref": "#/$defs/strings"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            }
+          }
+        },
+        "interlocks": {"$ref": "#/$defs/strings"}
+      }
+    },
+    "production_order": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recoverability", "stages", "masks_and_clipping", "compositing_behavior", "outline_redraw", "text_and_finishing_order"],
+      "properties": {
+        "recoverability": {"enum": ["observed_from_editable_source", "supported_inference", "hypothesis", "unresolved"]},
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["index", "operation", "contents", "evidence", "confidence"],
+            "properties": {
+              "index": {"type": "integer", "minimum": 0},
+              "operation": {"type": "string"},
+              "contents": {"$ref": "#/$defs/strings"},
+              "evidence": {"$ref": "#/$defs/strings"},
+              "confidence": {"$ref": "#/$defs/confidence"}
+            }
+          }
+        },
+        "masks_and_clipping": {"$ref": "#/$defs/strings"},
+        "compositing_behavior": {"$ref": "#/$defs/strings"},
+        "outline_redraw": {"type": "string"},
+        "text_and_finishing_order": {"type": "string"}
+      }
+    },
+    "visibility_profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["object_or_role", "bounding_box_occupancy", "visible_silhouette_occupancy", "inferred_full_envelope_occupancy", "visible_fraction", "exposure_level", "visible_fragment_count", "identity_cues_exposed", "protected_visible_regions", "allowed_occlusion", "measurement_status"],
+        "properties": {
+          "object_or_role": {"type": "string"},
+          "bounding_box_occupancy": {"$ref": "#/$defs/fractionOrNull"},
+          "visible_silhouette_occupancy": {"$ref": "#/$defs/fractionOrNull"},
+          "inferred_full_envelope_occupancy": {"$ref": "#/$defs/fractionOrNull"},
+          "visible_fraction": {"$ref": "#/$defs/fractionOrNull"},
+          "exposure_level": {"enum": ["full", "near_full", "partial", "fragmented", "minimal", "unresolved"]},
+          "visible_fragment_count": {"type": ["integer", "null"], "minimum": 0},
+          "identity_cues_exposed": {"$ref": "#/$defs/strings"},
+          "protected_visible_regions": {"$ref": "#/$defs/strings"},
+          "allowed_occlusion": {"type": "string"},
+          "measurement_status": {"enum": ["measured", "estimated", "qualitative", "unresolved"]}
+        }
+      }
+    },
+    "layer_grammar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layer_roles", "category_order", "allowed_overlap_types", "overlap_budget", "edge_ownership_rules", "visibility_priority", "target_mapping"],
+      "properties": {
+        "layer_roles": {"$ref": "#/$defs/strings"},
+        "category_order": {"$ref": "#/$defs/strings"},
+        "allowed_overlap_types": {"type": "array", "items": {"$ref": "#/$defs/overlapType"}, "uniqueItems": true},
+        "overlap_budget": {"type": "string"},
+        "edge_ownership_rules": {"$ref": "#/$defs/strings"},
+        "visibility_priority": {"$ref": "#/$defs/strings"},
+        "target_mapping": {"$ref": "#/$defs/strings"}
+      }
+    },
+    "hidden_shape_hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["object_or_role", "occluder", "inferred_geometry", "confidence", "unresolved"],
+        "properties": {
+          "object_or_role": {"type": "string"},
+          "occluder": {"type": "string"},
+          "inferred_geometry": {"type": "string"},
+          "confidence": {"$ref": "#/$defs/hypothesisConfidence"},
+          "unresolved": {"$ref": "#/$defs/strings"}
+        }
+      }
+    },
+    "fixed_rules": {"$ref": "#/$defs/strings"},
+    "variables": {"$ref": "#/$defs/strings"},
+    "failure_signs": {"$ref": "#/$defs/strings"},
+    "acceptance_checks": {"$ref": "#/$defs/strings"}
+  },
+  "$defs": {
+    "strings": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"enum": ["observed", "supported_inference", "hypothesis", "unresolved"]},
+    "hypothesisConfidence": {"enum": ["high", "medium", "low", "unresolved"]},
+    "fractionOrNull": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "overlapType": {"enum": ["cover", "crossing", "interlock", "inset", "window", "cutout", "clip", "transparent_overlay", "text_or_mark_overlay", "frame_crop", "shared_boundary", "unresolved"]}
+  }
+}

@@ -1,0 +1,13 @@
+interface:
+  display_name: 插图-参考图生图蓝图
+  short_description: 识别插图类型，提炼图层、塑造、色彩、疏密与生成约束
+  default_prompt: 使用 $analyze-image-for-generation 判断插图类型，并按原图复刻或风格迁移目标输出视觉图层、物体塑造、色彩关系、提示词与验收标准。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

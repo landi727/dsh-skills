@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chatgpt.com/schemas/analyze-image-for-generation/color-relationship.schema.json",
+  "title": "Executable Color Relationship System",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "palette_mode",
+    "mode_reason",
+    "roles",
+    "hue_distance_rules",
+    "temperature_budget",
+    "value_ladder",
+    "saturation_budget",
+    "adjacency_rules",
+    "fixed_colors",
+    "variable_colors",
+    "failure_signs",
+    "acceptance_checks"
+  ],
+  "properties": {
+    "palette_mode": {
+      "enum": ["preserve_source", "relationship_transfer", "custom_palette"]
+    },
+    "mode_reason": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "regions", "area_share", "measurement_status", "hue_family", "temperature", "value_band", "saturation_band", "status", "separation"],
+        "properties": {
+          "role": {"type": "string"},
+          "regions": {"type": "array", "items": {"type": "string"}},
+          "area_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "measurement_status": {"enum": ["measured", "estimated", "unresolved"]},
+          "hue_family": {"type": "string"},
+          "temperature": {"enum": ["warm", "cool", "neutral", "mixed", "unresolved"]},
+          "value_band": {"enum": ["lightest", "light", "mid", "dark", "darkest", "mixed", "unresolved"]},
+          "saturation_band": {"enum": ["low", "medium", "high", "mixed", "unresolved"]},
+          "status": {"enum": ["fixed", "transferable", "target_driven", "unresolved"]},
+          "separation": {"type": "string"}
+        }
+      }
+    },
+    "hue_distance_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role_a", "role_b", "relation", "evidence_status"],
+        "properties": {
+          "role_a": {"type": "string"},
+          "role_b": {"type": "string"},
+          "relation": {"enum": ["near", "moderate", "opposed", "unresolved"]},
+          "evidence_status": {"enum": ["measured", "estimated", "unresolved"]}
+        }
+      }
+    },
+    "temperature_budget": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["temperature", "area_share", "measurement_status", "functions", "regions"],
+        "properties": {
+          "temperature": {"enum": ["warm", "cool", "neutral", "mixed", "unresolved"]},
+          "area_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+          "measurement_status": {"enum": ["measured", "estimated", "unresolved"]},
+          "functions": {"type": "array", "items": {"type": "string"}},
+          "regions": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "value_ladder": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rank", "role", "value_band", "function"],
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1},
+          "role": {"type": "string"},
+          "value_band": {"enum": ["lightest", "light", "mid", "dark", "darkest", "mixed", "unresolved"]},
+          "function": {"type": "string"}
+        }
+      }
+    },
+    "saturation_budget": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "band", "concentration"],
+        "properties": {
+          "role": {"type": "string"},
+          "band": {"enum": ["low", "medium", "high", "mixed", "unresolved"]},
+          "concentration": {"type": "string"}
+        }
+      }
+    },
+    "adjacency_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role_a", "role_b", "policy", "separation_device"],
+        "properties": {
+          "role_a": {"type": "string"},
+          "role_b": {"type": "string"},
+          "policy": {"enum": ["direct", "outline", "neutral_buffer", "avoid", "unresolved"]},
+          "separation_device": {"type": "string"}
+        }
+      }
+    },
+    "fixed_colors": {"type": "array", "items": {"type": "string"}},
+    "variable_colors": {"type": "array", "items": {"type": "string"}},
+    "failure_signs": {"type": "array", "items": {"type": "string"}},
+    "acceptance_checks": {"type": "array", "items": {"type": "string"}}
+  }
+}

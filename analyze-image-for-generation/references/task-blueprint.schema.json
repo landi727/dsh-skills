@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Illustration Reconstruction and Style Transfer Blueprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mode", "fidelity_goal", "source_bindings", "illustration_classification", "mechanisms", "subtype_findings", "validation", "uncertainties"],
+  "properties": {
+    "mode": {"enum": ["reconstruction", "style_transfer", "both"]},
+    "fidelity_goal": {"type": "string"},
+    "source_bindings": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_id", "role", "limitations"],
+        "properties": {
+          "source_id": {"type": "string"},
+          "role": {"type": "string"},
+          "limitations": {"$ref": "#/$defs/strings"}
+        }
+      }
+    },
+    "illustration_classification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["primary_type", "supporting_types", "evidence", "counterevidence", "confidence", "loaded_modules", "conflicts"],
+      "properties": {
+        "primary_type": {"enum": ["flat_graphic", "painterly", "collage_print", "character_narrative", "technical_information", "mixed"]},
+        "supporting_types": {
+          "type": "array", "maxItems": 2, "uniqueItems": true,
+          "items": {"enum": ["flat_graphic", "painterly", "collage_print", "character_narrative", "technical_information"]}
+        },
+        "evidence": {"$ref": "#/$defs/strings"},
+        "counterevidence": {"$ref": "#/$defs/strings"},
+        "confidence": {"enum": ["high", "medium", "low", "unresolved"]},
+        "loaded_modules": {"$ref": "#/$defs/strings"},
+        "conflicts": {"$ref": "#/$defs/strings"}
+      },
+      "allOf": [
+        {"if": {"properties": {"primary_type": {"const": "mixed"}}, "required": ["primary_type"]}, "then": {"properties": {"supporting_types": {"minItems": 2}}}}
+      ]
+    },
+    "mechanisms": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["rule", "evidence", "scope", "confidence", "priority", "reason", "fixed", "variable", "failure_sign"],
+        "properties": {
+          "rule": {"type": "string"},
+          "evidence": {"$ref": "#/$defs/strings"},
+          "scope": {"type": "string"},
+          "confidence": {"enum": ["observed", "supported_inference", "hypothesis", "unresolved"]},
+          "priority": {"enum": ["hard", "medium", "soft", "unresolved"]},
+          "reason": {"type": "string"},
+          "fixed": {"type": "string"},
+          "variable": {"type": "string"},
+          "failure_sign": {"type": "string"}
+        }
+      }
+    },
+    "subtype_findings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["module", "findings", "generation_constraints", "failure_signs", "acceptance_checks"],
+        "properties": {
+          "module": {"enum": ["flat_graphic", "painterly", "collage_print", "character_narrative", "technical_information"]},
+          "findings": {"$ref": "#/$defs/strings"},
+          "generation_constraints": {"$ref": "#/$defs/strings"},
+          "failure_signs": {"$ref": "#/$defs/strings"},
+          "acceptance_checks": {"$ref": "#/$defs/strings"}
+        }
+      }
+    },
+    "reconstruction": {"$ref": "generation-blueprint.schema.json"},
+    "reconstruction_prompt": {"type": ["string", "null"]},
+    "style_transfer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fixed_rules", "variables", "source_specific", "hypotheses", "layering_system", "object_modeling_system", "color_system", "drawing_transformations", "visual_organization", "density_rhythm", "interactions", "transfer_scope", "target_application", "reusable_prompt", "avoidances"],
+      "properties": {
+        "fixed_rules": {"$ref": "#/$defs/strings"},
+        "variables": {"$ref": "#/$defs/strings"},
+        "source_specific": {"$ref": "#/$defs/strings"},
+        "hypotheses": {"$ref": "#/$defs/strings"},
+        "layering_system": {"$ref": "layering-system.schema.json"},
+        "object_modeling_system": {"$ref": "object-modeling.schema.json"},
+        "color_system": {"$ref": "color-relationship.schema.json"},
+        "drawing_transformations": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["dimension", "action", "visible_consequence", "evidence", "applicability"],
+            "properties": {
+              "dimension": {"type": "string"},
+              "action": {"type": "string"},
+              "visible_consequence": {"type": "string"},
+              "evidence": {"$ref": "#/$defs/strings"},
+              "applicability": {"type": "string"}
+            }
+          }
+        },
+        "visual_organization": {
+          "type": "object", "additionalProperties": false,
+          "required": ["focal_hierarchy", "visual_weight", "motif_grammar", "narrative_devices", "semantic_grouping"],
+          "properties": {
+            "focal_hierarchy": {"$ref": "#/$defs/visual_dimension"},
+            "visual_weight": {"$ref": "#/$defs/visual_dimension"},
+            "motif_grammar": {"$ref": "#/$defs/visual_dimension"},
+            "narrative_devices": {"$ref": "#/$defs/visual_dimension"},
+            "semantic_grouping": {"$ref": "#/$defs/visual_dimension"}
+          }
+        },
+        "density_rhythm": {
+          "type": "object", "additionalProperties": false,
+          "required": ["zones", "largest_quiet_field", "protected_quiet_zones", "density_peaks", "cluster_separation", "transition_pattern", "subject_cleanliness", "cluster_budget", "content_inventory", "allocation_ledger", "overflow_decisions", "target_density_budget", "failure_signs"],
+          "properties": {
+            "zones": {
+              "type": "array",
+              "items": {
+                "type": "object", "additionalProperties": false,
+                "required": ["region", "level", "area_share", "drivers", "boundary", "measurement_status"],
+                "properties": {
+                  "region": {"type": "string"},
+                  "level": {"enum": ["quiet", "transition", "medium", "dense", "unresolved"]},
+                  "area_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+                  "drivers": {"$ref": "#/$defs/strings"},
+                  "boundary": {"type": "string"},
+                  "measurement_status": {"enum": ["measured", "estimated", "unresolved"]}
+                }
+              }
+            },
+            "largest_quiet_field": {"type": "string"},
+            "protected_quiet_zones": {
+              "type": "array",
+              "items": {
+                "type": "object", "additionalProperties": false,
+                "required": ["region", "minimum_area_share", "continuity", "allowed_interruptions", "prohibited_content", "measurement_status"],
+                "properties": {
+                  "region": {"type": "string"},
+                  "minimum_area_share": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+                  "continuity": {"type": "string"},
+                  "allowed_interruptions": {"$ref": "#/$defs/strings"},
+                  "prohibited_content": {"$ref": "#/$defs/strings"},
+                  "measurement_status": {"enum": ["measured", "estimated", "unresolved"]}
+                }
+              }
+            },
+            "density_peaks": {"$ref": "#/$defs/strings"},
+            "cluster_separation": {"type": "string"},
+            "transition_pattern": {"type": "string"},
+            "subject_cleanliness": {"type": "string"},
+            "cluster_budget": {"$ref": "#/$defs/strings"},
+            "content_inventory": {
+              "type": "object", "additionalProperties": false,
+              "required": ["required", "candidate", "incidental"],
+              "properties": {
+                "required": {"$ref": "#/$defs/strings"},
+                "candidate": {"$ref": "#/$defs/strings"},
+                "incidental": {"$ref": "#/$defs/strings"}
+              }
+            },
+            "allocation_ledger": {"$ref": "#/$defs/strings"},
+            "overflow_decisions": {"$ref": "#/$defs/strings"},
+            "target_density_budget": {"$ref": "#/$defs/strings"},
+            "failure_signs": {"$ref": "#/$defs/strings"}
+          }
+        },
+        "interactions": {"$ref": "#/$defs/strings"},
+        "transfer_scope": {"type": "string"},
+        "target_application": {"type": ["string", "null"]},
+        "reusable_prompt": {"type": ["string", "null"]},
+        "avoidances": {"$ref": "#/$defs/strings"}
+      }
+    },
+    "validation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_audit", "generation_status", "criteria", "findings", "tested_scope", "run_context"],
+      "properties": {
+        "source_audit": {"enum": ["completed", "partial", "not_run"]},
+        "generation_status": {"enum": ["pass", "partial", "fail", "not_run"]},
+        "criteria": {"$ref": "#/$defs/strings"},
+        "findings": {"$ref": "#/$defs/strings"},
+        "tested_scope": {"$ref": "#/$defs/strings"},
+        "run_context": {"type": ["string", "null"], "description": "Actual model/tool, reference use, prompt version, targets and output identifiers; null when not run. For both, identify each mode's criteria and results separately."}
+      }
+    },
+    "uncertainties": {"$ref": "#/$defs/strings"}
+  },
+  "allOf": [
+    {"if": {"properties": {"mode": {"const": "reconstruction"}}}, "then": {"required": ["reconstruction"], "not": {"required": ["style_transfer"]}}},
+    {"if": {"properties": {"mode": {"const": "style_transfer"}}}, "then": {"required": ["style_transfer"], "not": {"anyOf": [{"required": ["reconstruction"]}, {"required": ["reconstruction_prompt"]}]}}},
+    {"if": {"properties": {"mode": {"const": "both"}}}, "then": {"required": ["reconstruction", "style_transfer"]}}
+  ],
+  "$defs": {
+    "visual_dimension": {
+      "type": "object", "additionalProperties": false,
+      "required": ["observation", "evidence", "scope", "confidence", "transferable_rule", "target_variables", "generation_constraint", "failure_sign", "acceptance_check"],
+      "properties": {
+        "observation": {"type": "string"},
+        "evidence": {"$ref": "#/$defs/strings"},
+        "scope": {"type": "string"},
+        "confidence": {"enum": ["observed", "supported_inference", "hypothesis", "unresolved"]},
+        "transferable_rule": {"type": "string"},
+        "target_variables": {"$ref": "#/$defs/strings"},
+        "generation_constraint": {"type": "string"},
+        "failure_sign": {"type": "string"},
+        "acceptance_check": {"type": "string"}
+      }
+    },
+    "strings": {"type": "array", "items": {"type": "string"}}
+  }
+}
