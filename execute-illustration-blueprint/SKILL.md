@@ -11,6 +11,8 @@ Turn an approved visual blueprint into a compact production contract that an ima
 
 Do not redo the source analysis. Do not add new story content. Treat this skill as the execution stage between analysis and image generation.
 
+When the approved blueprint omits a spatial or density field required for execution, perform only the targeted fallback extraction defined in `references/execution-contract.md`. This exception fills missing execution data from the attached reference; it does not reopen the full style analysis.
+
 ## Required inputs
 
 Collect from the current request and prior context:
@@ -51,6 +53,8 @@ Read `references/execution-contract.md` completely. Convert the blueprint and ta
 - a palette-role map;
 - an overflow deletion order.
 
+If the blueprint lacks any of the following, extract that field from the reference before compiling the contract: quiet-field location and protected extent, dense-cluster count and footprint, primary-subject clean-area floor, or secondary-element capacity. Mark it as source-derived fallback evidence and enforce the conservative bound as a hard constraint. Do not leave these four fields unresolved when a usable reference is present.
+
 Classify target items as:
 
 - **required**: explicitly mandatory or frozen;
@@ -61,20 +65,21 @@ Every included secondary item must belong to one named cluster or one explicitly
 
 ### 2. Adapt every important visual role
 
-Read `references/role-adaptation.md` whenever the target contains people, animals, creatures, vehicles, mechanical subjects, material-rich objects, or embedded scenes.
+Read `references/role-adaptation.md` whenever the target contains people, animals, creatures, vehicles, mechanical subjects, important discrete objects, important environment roles, material-rich subjects, or embedded scenes.
 
-Create a compact role card for:
+First create an internal role inventory and module manifest. The inventory must include:
 
 - the primary subject;
 - every major object;
-- every person, animal, or creature;
-- every inset scene inside a window, visor, helmet, screen, cockpit, cutaway, or body compartment.
+- every required or narratively important person, animal, creature, mechanical subject, vehicle, object, or environment role;
+- every important subject inside a window, visor, helmet, screen, cockpit, cutaway, or body compartment.
 
-Each role card must define:
+Give every inventoried role a compact universal role card. Then activate only the matching category module from `references/role-adaptation.md`: person, animal, mechanical, vehicle, object, or environment. Activate the inset module only for genuinely embedded content. A hybrid role may activate more than one category only when each module controls a distinct visible property.
+
+The universal role card defines:
 
 - frame share and visibility priority;
 - silhouette and shape grammar;
-- pose, gaze, gesture, and prop interaction when applicable;
 - line treatment and contour hierarchy;
 - fill mode and value-plane ceiling;
 - color role and adjacency protection;
@@ -82,19 +87,23 @@ Each role card must define:
 - detail budget and protected clean masses;
 - concrete style-drift exclusions.
 
+Category-specific fields such as gaze, fur, hardware, cabin, material response, or horizon structure belong only to their activated module. Empty, irrelevant, and inactive fields must not enter the generation prompt.
+
 Treat role adaptation as mandatory even when the user only names the character. A role noun such as botanist, diver, pilot, mail carrier, child, dog, or robot does not define how that role belongs to the reference style.
 
 When the source lacks the target category, label the mapping as a cross-category hypothesis and derive it from the closest supported shape, line, fill, modeling, and density mechanisms. Do not let the model fall back to generic anime, glossy 3D, cinematic concept art, editorial vector, or realistic portrait conventions unless the blueprint supports them.
 
 ### 3. Compile the generation prompt
 
+Compile from the module manifest. Role cards remain internal planning artifacts. Emit at most one compact adaptation sentence per important role, using only decisive fields from its active modules. Remove inactive headings, placeholders, defaults, and warnings; do not let one role inherit another role's category fields.
+
 Write the prompt in this order:
 
-1. **Execution contract**: first-read order, quiet-space protection, cluster limits, subject clean-area floor, modeling ceiling, inset-scene rule, and overflow behavior.
+1. **Execution contract**: first-read order, quiet-space protection, cluster limits, subject clean-area floor, modeling ceiling, overflow behavior, and only the active module clauses.
 2. **Reference roles**: identify each attached image as style, composition, subject, or edit reference.
 3. **Scene and primary subject**: state the requested story and required identity cues.
-4. **Role adaptation cards**: convert important subjects and all people or animals into the reference language.
-5. **Inset scenes and layer relations**: state clipping, contour ownership, visibility, and one-action hierarchy.
+4. **Role adaptations**: convert every important subject through its universal card and activated category module, using one compact sentence per role.
+5. **Inset scenes and layer relations**: state clipping, contour ownership, visibility, one-action hierarchy, container share of frame, child share of container, and the child's effective share of the full frame.
 6. **Background allocation**: name allowed zones and cluster assignments; distinguish required cues from candidate pools.
 7. **Color, line, fill, light, and texture**: preserve the blueprint's relationships and scoped exceptions.
 8. **Exact text**: quote only requested text and limit its placement and hierarchy.
@@ -117,13 +126,13 @@ Check, in order:
 
 1. first-read subject and silhouette;
 2. quiet-field continuity and cluster separation;
-3. role-style consistency for every person or animal;
+3. role-style consistency, identity, visibility, and scale for every inventoried important subject;
 4. inset clipping, action readability, and contour ownership;
 5. object-modeling, line, fill, light, color, and texture ceilings;
 6. required identity cues and exact text;
 7. source-content leakage and unassigned decoration.
 
-For one local failure, make one targeted edit while freezing the rest. For a global rhythm or style failure, reduce candidate content and regenerate once with the execution contract repeated at the beginning. Stop after the bounded correction and report any remaining drift.
+For one local failure, make one targeted edit while freezing the rest. After the edit, compare the full frame, thumbnail, every important-subject crop, and every frozen invariant with the pre-edit output. Reject the edit and retain the pre-edit output when the correction causes material collateral change. For a global rhythm or style failure, reduce candidate content and regenerate once with the execution contract repeated at the beginning. Stop after the bounded correction and report any remaining drift.
 
 ## Output behavior
 
@@ -134,4 +143,4 @@ For one local failure, make one targeted edit while freezing the rest. For a glo
 
 ## Acceptance condition
 
-The result passes only when the new content reads in the reference's visual language at both full size and thumbnail size. Overall palette or texture similarity cannot compensate for a character, animal, inset scene, or major object that uses a conflicting modeling system.
+The result passes only when the new content reads in the reference's visual language at both full size and thumbnail size, every inventoried important subject passes its own checks, and any accepted local repair preserves all frozen invariants. Overall palette or texture similarity cannot compensate for an important role that uses a conflicting modeling system.
