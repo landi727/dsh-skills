@@ -1,0 +1,4 @@
+interface:
+  display_name: "跨风格视觉排版"
+  short_description: "先确认场景与参考，再控制排版、字号、配色和实际可读性"
+  default_prompt: "使用 $design-longform-layouts 先确认使用场景与参考图，再制定排版、字号和配色约束。"
