@@ -1,0 +1,13 @@
+interface:
+  display_name: 微信公众号交互与兼容性审查
+  short_description: 审查公众号长图文的图片、GIF、SVG、视频、链接与真机兼容性
+  default_prompt: 使用 $audit-wechat-article-compatibility 审查这份微信公众号图文方案，标出可直接使用、需实测和必须降级的设计，并给出发布前验证清单。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
