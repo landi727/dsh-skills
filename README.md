@@ -24,7 +24,7 @@ Real Deliverable
 |---|---|---|
 | CORE / PROTOCOL | 全局执行纪律与协作规则 | no-slacking、im-satisfied |
 | CAPABILITY | 可被多个 Workflow 复用的稳定能力 | visual-brief（视觉） |
-| WORKFLOW | 组合能力完成完整生产任务 | style-replication、build-modular-longform-templates、rebuild-layered-html-template、rebuild-layered-canva-template（视觉） |
+| WORKFLOW | 组合能力完成完整生产任务 | style-replication、build-closed-illustration-asset-library、build-modular-longform-templates、rebuild-layered-html-template、rebuild-layered-canva-template（视觉） |
 | ADAPTER / UTILITY | 模型、工具、外部执行环境适配 | model-adapter |
 
 ## 当前子系统：Creative / Visual Production
@@ -32,9 +32,10 @@ Real Deliverable
 ```
 visual-brief（定义任务）
       ↓ Visual Task Brief
-style-replication（理解参考 → 视觉语法 → 新画面设计）
-      ↓ STYLE SPEC + Design Spec
-model-adapter（翻译成模型语言）
+      ├─ 视觉决策不足 → art-direct-image → Direction Contract ─┐
+      └─ 需要参考复刻 → style-replication → STYLE SPEC + Design Spec ─┤
+                                                               ↓
+                                                  model-adapter（翻译成模型语言）
       ↓ 最终提示词
 generation（真实生成）
       ↓
@@ -54,8 +55,11 @@ style-replication 内部目前包含 Reference Analysis / Visual Grammar / Compo
 | no-slacking | Protocol | — | im-satisfied / visual-brief | 入口与执行纪律：Readiness/Ownership/Risk/Evidence/Stop |
 | im-satisfied | Protocol | no-slacking | 主线 | 条件分支：满意标准卡 + 验收契约 |
 | visual-brief | Visual Capability | no-slacking | style-replication / model-adapter | 定义"这次视觉任务要创作什么"（8 字段 Brief） |
+| [art-direct-image](art-direct-image/SKILL.md) | Visual Capability | visual-brief / 直接生图需求 | imagegen / model-adapter | 模糊时补齐少量高影响视觉决定，控制疏密、留白、中性色彩、条件性线条与模型惯性；完整蓝图直通 |
 | style-replication | Workflow | visual-brief | model-adapter → generation → QA | 风格复刻全流程：参考→理解→STYLE SPEC→设计→验证→修正 |
+| [build-closed-illustration-asset-library](build-closed-illustration-asset-library/SKILL.md) | Workflow（视觉） | 已批准母图 | 用户 / AI排版 / Cursor | 母图分析 → 全量元素拆分与补全 → 编号、令牌、manifest → 封闭资产库；Level 0 Draft，真实生产未验证 |
 | [build-modular-longform-templates](build-modular-longform-templates/SKILL.md) | Workflow（视觉） | 原始参考图 + 固定视觉风格 + 模块范围 | 用户 / Cursor（HTML + CSS 文件） | 固定风格 → 模块拆解 → 正文自动增高 → 本地模板文件与组合示例；Level 0 Draft，真实生产未验证 |
+| [audit-wechat-article-compatibility](audit-wechat-article-compatibility/SKILL.md) | Capability（发布审查） | 图文策划 / HTML与素材包 / 微信草稿预览 | 策划修改 / 制作验收 / 发布判断 | 审查图片、GIF、SVG、视频、链接和连续长图的微信兼容性，以证据分级、降级方案和双端真机测试形成发布门槛；Level 0 Draft，真实发布验证待完成 |
 | [rebuild-layered-html-template](rebuild-layered-html-template/SKILL.md) | Workflow（视觉） | 准确扁平原图 + 目标画布 + 品牌保护区 | 用户 / Cursor（分层 HTML + CSS 文件） | 准确原图 → PSD 式拆层 → 本地 HTML/CSS 重建 → 结构与视觉校验；Level 0 Draft，已完成一次真实生产回测 |
 | [rebuild-layered-canva-template](rebuild-layered-canva-template/SKILL.md) | Workflow（视觉） | 准确扁平原图 + 目标可画尺寸 + 品牌保护区 | 用户 / 可画（可编辑 PDF/模板） | 准确原图 → PSD 式拆层 → 可画定向 PDF → 导入与可编辑性校验；Level 0 Draft，真实导入闭环尚待完整验证 |
 | model-adapter | Adapter | visual-brief / style-replication | 用户（生成工具） | 把已定创作决定翻译成目标模型可执行语言 |
@@ -76,11 +80,26 @@ dsh-skills/
 │   ├── SKILL.md                  （完整 Workflow）
 │   ├── references/               （element-selection）
 │   └── evals/                    （eval-a…f + eval-run 运行记录）
+├── art-direct-image/
+│   ├── SKILL.md                  （模糊生图的轻量视觉导演）
+│   ├── agents/openai.yaml        （Skill 显示与隐式调用信息）
+│   ├── assets/icon.svg           （Skill 图标）
+│   └── references/               （摄影、插画平面、产品物件与生成后验收）
+├── build-closed-illustration-asset-library/
+│   ├── SKILL.md                  （封闭插图资产库 Workflow）
+│   ├── agents/openai.yaml        （Skill 显示与调用信息）
+│   ├── references/               （视觉分析、拆分补全与交付契约）
+│   ├── scripts/                  （资产库结构与来源校验）
+│   └── evals/                    （行为测试场景与运行状态）
 ├── build-modular-longform-templates/
 │   ├── SKILL.md                  （模块化长图文模板 Workflow）
 │   ├── agents/openai.yaml        （Skill 显示与调用信息）
 │   ├── assets/icon.svg           （Skill 图标）
 │   └── references/html-delivery.md（HTML 文件、延展与验收规则）
+├── audit-wechat-article-compatibility/
+│   ├── SKILL.md                  （微信公众号交互与兼容性审查 Capability）
+│   ├── agents/openai.yaml        （Skill 显示与调用信息）
+│   └── references/               （证据分级、功能基线、发布测试与报告模板）
 ├── rebuild-layered-canva-template/
 │   ├── SKILL.md                  （扁平原图转可画分层 PDF/模板 Workflow）
 │   ├── agents/openai.yaml        （Skill 显示与调用信息）
@@ -107,10 +126,10 @@ dsh-skills/
 
 ```bash
 mkdir -p ~/.dsh/skills
-cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates rebuild-layered-html-template rebuild-layered-canva-template ~/.dsh/skills/
+cp -R no-slacking im-satisfied visual-brief art-direct-image style-replication model-adapter film-review-from-transcript build-closed-illustration-asset-library build-modular-longform-templates audit-wechat-article-compatibility rebuild-layered-html-template rebuild-layered-canva-template ~/.dsh/skills/
 
 # 共享目录（Claude / Cursor 等也能读取）：
-# cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates rebuild-layered-html-template rebuild-layered-canva-template ~/.agents/skills/
+# cp -R no-slacking im-satisfied visual-brief art-direct-image style-replication model-adapter film-review-from-transcript build-closed-illustration-asset-library build-modular-longform-templates audit-wechat-article-compatibility rebuild-layered-html-template rebuild-layered-canva-template ~/.agents/skills/
 ```
 
 （用 `cp -R` 以包含各 skill 的 `references/`。）
@@ -120,7 +139,7 @@ cp -R no-slacking im-satisfied visual-brief style-replication model-adapter film
 本仓库是 `~/.dsh/skills` 的发布快照。日常迭代以 `~/.dsh/skills` 为准：
 
 ```bash
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates rebuild-layered-html-template rebuild-layered-canva-template; do
+for s in no-slacking im-satisfied visual-brief art-direct-image style-replication model-adapter film-review-from-transcript build-closed-illustration-asset-library build-modular-longform-templates audit-wechat-article-compatibility rebuild-layered-html-template rebuild-layered-canva-template; do
   mkdir -p $s && cp -R ~/.dsh/skills/$s/ $s/
 done
 ```
@@ -137,7 +156,7 @@ awk 'BEGIN{fm=0} /^---$/ {fm=!fm; next} fm && gsub(/: /, ": ") > 1 {print FILENA
 node -e "
 const fs = require('fs');
 const yaml = require('yaml');
-for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication','model-adapter','film-review-from-transcript','build-modular-longform-templates','rebuild-layered-html-template','rebuild-layered-canva-template']) {
+for (const n of ['no-slacking','im-satisfied','visual-brief','art-direct-image','style-replication','model-adapter','film-review-from-transcript','build-closed-illustration-asset-library','build-modular-longform-templates','audit-wechat-article-compatibility','rebuild-layered-html-template','rebuild-layered-canva-template']) {
   const s = fs.readFileSync(n + '/SKILL.md', 'utf8');
   const m = s.match(/^---\n([\s\S]*?)\n---/);
   try { yaml.parse(m[1]); console.log(n, 'OK'); }
@@ -145,7 +164,7 @@ for (const n of ['no-slacking','im-satisfied','visual-brief','style-replication'
 }
 "
 # 3) 双向一致性：生效版（~/.dsh/skills）与仓库副本必须逐字节一致
-for s in no-slacking im-satisfied visual-brief style-replication model-adapter film-review-from-transcript build-modular-longform-templates; do
+for s in no-slacking im-satisfied visual-brief art-direct-image style-replication model-adapter film-review-from-transcript build-closed-illustration-asset-library build-modular-longform-templates audit-wechat-article-compatibility; do
   diff -q ~/.dsh/skills/$s/SKILL.md $s/SKILL.md || echo "$s 不一致"
 done
 ```
