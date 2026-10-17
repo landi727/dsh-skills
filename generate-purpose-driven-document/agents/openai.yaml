@@ -1,0 +1,13 @@
+interface:
+  display_name: 目的驱动的文档生成
+  short_description: 先按文档目的制定标准，再组织信息、生成正文，检查重复、层级与依据
+  default_prompt: 使用 $generate-purpose-driven-document，将以上材料整理成符合用途的文档，保留重要信息，理顺层级和顺序，合并重复表达，并区分事实、推断与建议。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

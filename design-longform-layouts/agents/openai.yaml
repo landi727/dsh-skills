@@ -1,4 +1,6 @@
 interface:
-  display_name: "跨风格视觉排版"
-  short_description: "先确认场景与参考，再控制排版、字号、配色和实际可读性"
-  default_prompt: "使用 $design-longform-layouts 先确认使用场景与参考图，再制定排版、字号和配色约束。"
+  display_name: 跨风格视觉排版（已停用）
+  short_description: 已停用：禁止自动、显式或间接调用；仅保留原始规则和资源供审查
+  default_prompt: $design-longform-layouts 已停用；不得执行或委派。仅在用户明确重新启用并完成配置修改、验证与保存后恢复。
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "alpha_threshold": 250,
+  "sample_density": 1,
+  "viewports": [{
+    "id": "desktop-example", "width": 1440, "height": 900,
+    "required_rect": [0, 0, 1440, 900],
+    "layers": [{"id": "background", "file": "../actual-assets/background.png", "logical_size": [1600, 1000], "base_position": [-80, -50]}],
+    "groups": [{"id": "background-coverage", "layer_ids": ["background"]}],
+    "frames": [
+      {"id": "start", "time_ms": 0, "scene_to_viewport": [1, 0, 0, 1, 0, 0], "layer_transforms": {"background": [1, 0, 0, 1, 0, 0]}},
+      {"id": "sampled-shift", "time_ms": 500, "scene_to_viewport": [1, 0, 0, 1, 0, 0], "layer_transforms": {"background": [1, 0, 0, 1, 60, 0]}}
+    ]
+  }]
+}

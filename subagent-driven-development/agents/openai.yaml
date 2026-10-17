@@ -1,0 +1,14 @@
+interface:
+  display_name: Superpowers · Subagent-Driven Development
+  short_description: Dispatch plan tasks with isolated agents and independent reviews
+  default_prompt: Use $subagent-driven-development to execute this implementation
+    plan with independent task reviews.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>素材静态验收</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f4f2;color:#242524;font:14px/1.6 system-ui,sans-serif}header{padding:20px 24px;background:white;border-bottom:1px solid #ddd}h1{font-size:20px;margin:0 0 6px}p{margin:4px 0;color:#60625e}main{display:grid;grid-template-columns:250px minmax(0,1fr);gap:20px;padding:20px}aside,section{background:white;border:1px solid #ddd;border-radius:8px;padding:16px}label{display:block;margin:0 0 10px}select{width:100%;padding:7px;border:1px solid #ccc;border-radius:4px;background:white}button,.pick{display:inline-block;padding:7px 12px;background:#fff;border:1px solid #aaa;border-radius:4px;cursor:pointer;margin:8px 8px 0 0;color:inherit}input[type=file]{position:absolute;width:1px;height:1px;opacity:0}.layer{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-top:1px solid #eee;overflow-wrap:anywhere}.layer input{margin-top:6px}small{color:#686b66}.stage{overflow:auto}canvas{display:block;max-width:100%;height:auto;border:1px solid #bbb;image-rendering:auto}canvas.checker{background-color:#fff;background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}#status{white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}#status.error{color:#a12323}#metadata{margin:10px 0;color:#555;overflow-wrap:anywhere}@media(max-width:700px){main{grid-template-columns:1fr;padding:12px}header{padding:16px}}
+</style>
+<header>
+<h1>素材静态验收</h1>
+<p>选择 scene.json 和包内图像，检查实际图层与已声明的查看范围。文件只在本地读取。</p>
+<label class="pick">选择素材目录<input id="folder" type="file" webkitdirectory multiple></label>
+<label class="pick">选择多个文件<input id="files" type="file" multiple accept=".json,.png,.webp,.jpg,.jpeg,.avif"></label>
+</header>
+<main>
+<aside>
+<label>查看范围<select id="view"><option value="0">原图范围</option></select></label>
+<label>查看内容<select id="mode"><option value="composite">静态重组</option><option value="source">原图</option><option value="diff">差异（原图区域）</option></select></label>
+<label>透明检查底色<select id="backdrop"><option value="checker">棋盘</option><option value="white">白色</option><option value="black">黑色</option></select></label>
+<button id="all" type="button">显示全部</button>
+<button id="none" type="button">隐藏全部</button>
+<div id="layers"></div>
+</aside>
+<section>
+<div id="status" role="status">尚未载入素材。</div>
+<div id="metadata"></div>
+<div class="stage"><canvas id="canvas" class="checker" width="1" height="1"></canvas></div>
+<p><small>差异用于定位变化；补绘合理性、细线与颜色需查看原尺寸素材。此页仅检查静态素材。</small></p>
+</section>
+</main>
+<script>
+'use strict';
+const ui = Object.fromEntries(['folder','files','view','mode','backdrop','all','none','layers','status','metadata','canvas'].map(id=>[id,document.getElementById(id)]));
+let state=null, loadSerial=0;
+function message(text,error=false){ui.status.textContent=text;ui.status.classList.toggle('error',error)}
+function finite(v,label,positive=false){if(typeof v!=='number'||!Number.isFinite(v)||(positive&&v<=0))throw new Error(label+' 必须是'+(positive?'正':'有限')+'数值');return v}
+function rect(v,label){if(!v||typeof v!=='object')throw new Error(label+' 缺失');return {x:finite(v.x,label+'.x'),y:finite(v.y,label+'.y'),width:finite(v.width,label+'.width',true),height:finite(v.height,label+'.height',true)}}
+function normal(path){if(typeof path!=='string'||!path.trim())throw new Error('图像路径缺失');const s=path.replaceAll('\\','/').replace(/^\.\//,'');if(s.startsWith('/')||s.split('/').includes('..'))throw new Error('请使用包内相对路径：'+path);return s}
+async function load(input){
+ const serial=++loadSerial;state=null;ui.layers.replaceChildren();ui.metadata.textContent='';ui.canvas.width=1;ui.canvas.height=1;message('正在读取…');
+ try{
+  const files=Array.from(input);const scenes=files.filter(f=>f.name==='scene.json');if(scenes.length!==1)throw new Error('请同时选择唯一的 scene.json 和它引用的图像。');
+  const sceneFile=scenes[0], m=JSON.parse(await sceneFile.text());if(m.schema_version!==1)throw new Error('只支持 schema_version: 1');
+  if(!m.source||!m.canvas||!Array.isArray(m.layers)||!m.layers.length)throw new Error('source、canvas 或 layers 缺失');
+  for(const part of ['source','canvas'])for(const key of ['width','height'])finite(m[part][key],part+'.'+key,true);
+  const root=(sceneFile.webkitRelativePath||sceneFile.name).split('/').slice(0,-1).join('/');
+  function find(path){const p=normal(path), full=root?root+'/'+p:p;const exact=files.filter(f=>(f.webkitRelativePath||f.name)===full);if(exact.length===1)return exact[0];const names=files.filter(f=>f.name===p.split('/').pop());if(names.length===1)return names[0];throw new Error(names.length?'文件同名，无法确定路径：'+p:'缺少文件：'+p)}
+  const imgs=new Map();
+  async function getImage(path){if(imgs.has(path))return imgs.get(path);const file=find(path),url=URL.createObjectURL(file),img=new Image();try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('无法读取图像：'+path));img.src=url});imgs.set(path,img);return img}finally{URL.revokeObjectURL(url)}}
+  const source=await getImage(m.source.file);if(source.naturalWidth!==m.source.width||source.naturalHeight!==m.source.height)throw new Error('原图像素尺寸与清单不一致');
+  const ids=new Set(),layers=[];
+  for(let i=0;i<m.layers.length;i++){const l=m.layers[i];if(typeof l.id!=='string'||!l.id||ids.has(l.id))throw new Error('图层 ID 缺失或重复');ids.add(l.id);for(const k of ['x','y','z'])finite(l[k],l.id+'.'+k);for(const k of ['width','height','export_scale'])finite(l[k],l.id+'.'+k,true);const img=await getImage(l.file);if(Math.abs(img.naturalWidth-l.width*l.export_scale)>1e-6||Math.abs(img.naturalHeight-l.height*l.export_scale)>1e-6)throw new Error(l.id+' 文件尺寸与输出倍数不一致');layers.push({...l,img,index:i,visible:true})}
+  layers.sort((a,b)=>a.z-b.z||a.index-b.index);
+  const views=[{id:'原图范围',width_px:m.source.width,height_px:m.source.height,source_rect:{x:0,y:0,width:m.source.width,height:m.source.height}}];
+  if(m.target_views!==undefined&&!Array.isArray(m.target_views))throw new Error('target_views 必须是数组');
+  const viewIds=new Set();for(const v of m.target_views||[]){if(typeof v.id!=='string'||!v.id||viewIds.has(v.id))throw new Error('查看范围 ID 缺失或重复');viewIds.add(v.id);finite(v.width_px,v.id+'.width_px',true);finite(v.height_px,v.id+'.height_px',true);rect(v.source_rect,v.id+'.source_rect');views.push(v)}
+  if(serial!==loadSerial)return;
+  state={m,layers,source,views};ui.view.replaceChildren();views.forEach((v,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=v.id;ui.view.append(o)});
+  for(const l of layers){const label=document.createElement('label');label.className='layer';const box=document.createElement('input');box.type='checkbox';box.checked=true;box.dataset.layer=l.id;box.onchange=()=>{l.visible=box.checked;render()};const span=document.createElement('span');span.textContent=(l.name||l.id)+' · z='+l.z;label.append(box,span);ui.layers.append(label)}
+  render();
+ }catch(e){if(serial===loadSerial){state=null;message(e.message,true)}}
+}
+function paint(target,v,sourceOnly=false){const c=target.getContext('2d'),r=v.source_rect,sx=target.width/r.width,sy=target.height/r.height;c.clearRect(0,0,target.width,target.height);c.imageSmoothingEnabled=true;if(sourceOnly){c.drawImage(state.source,-r.x*sx,-r.y*sy,state.m.source.width*sx,state.m.source.height*sy)}else for(const l of state.layers)if(l.visible)c.drawImage(l.img,(l.x-r.x)*sx,(l.y-r.y)*sy,l.width*sx,l.height*sy)}
+function render(){
+ if(!state)return;
+ try{
+  const v=state.views[Number(ui.view.value)||0],w=Math.round(v.width_px),h=Math.round(v.height_px);if(w<1||h<1||w*h>24000000)throw new Error('查看尺寸过大或过小，请调整清单中的 width_px、height_px。');
+  const cv=ui.canvas;cv.width=w;cv.height=h;const backdrop=ui.backdrop.value;cv.className=backdrop==='checker'?'checker':'';cv.style.backgroundColor=backdrop==='black'?'#000':'#fff';
+  if(ui.mode.value==='diff'){
+   const a=document.createElement('canvas'),b=document.createElement('canvas');a.width=b.width=w;a.height=b.height=h;paint(a,v);paint(b,v,true);const ca=a.getContext('2d'),aa=ca.getImageData(0,0,w,h),bb=b.getContext('2d').getImageData(0,0,w,h),out=ui.canvas.getContext('2d').createImageData(w,h),r=v.source_rect;
+   for(let i=0;i<out.data.length;i+=4){const pixel=i/4,x=r.x+(pixel%w+.5)*r.width/w,y=r.y+(Math.floor(pixel/w)+.5)*r.height/h;if(x<0||x>=state.m.source.width||y<0||y>=state.m.source.height)continue;const da=Math.abs(aa.data[i+3]-bb.data[i+3]);for(let k=0;k<3;k++)out.data[i+k]=Math.max(Math.abs(aa.data[i+k]-bb.data[i+k]),da);out.data[i+3]=255}
+   ui.canvas.getContext('2d').putImageData(out,0,0);
+  }else paint(cv,v,ui.mode.value==='source');
+  const r=v.source_rect;ui.metadata.textContent='查看：'+w+' × '+h+' px；原图坐标范围：('+r.x+', '+r.y+') '+r.width+' × '+r.height+'；已显示 '+state.layers.filter(l=>l.visible).length+'/'+state.layers.length+' 层';
+  message('已载入。此预览未自动判定透明边缘、背景覆盖或补绘保真；请结合检查报告与原尺寸文件。');
+ }catch(e){message(e.message,true)}
+}
+ui.folder.onchange=e=>load(e.target.files);ui.files.onchange=e=>load(e.target.files);
+for(const id of ['view','mode','backdrop'])ui[id].onchange=render;
+function setVisible(value){if(!state)return;state.layers.forEach(l=>{l.visible=value});ui.layers.querySelectorAll('input').forEach(b=>{b.checked=value});render()}
+ui.all.onclick=()=>setVisible(true);ui.none.onclick=()=>setVisible(false);
+</script>
+</html>

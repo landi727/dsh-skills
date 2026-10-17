@@ -1,0 +1,13 @@
+interface:
+  display_name: 长图排版经验继承（永久停用）
+  short_description: 已永久停用：禁止自动、显式或间接调用，原执行流程已移除，不得恢复本技能。
+  default_prompt: $inherit-longform-design 已永久停用；只说明停用状态，不执行、不委派、不恢复其原流程。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: false

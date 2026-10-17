@@ -1,0 +1,13 @@
+interface:
+  display_name: 标杆驱动初版设计
+  short_description: 研究成熟案例，推导有依据且边界清晰的完整初版架构
+  default_prompt: 使用 $design-concept-from-benchmarks 研究成熟市场方案，并为我的概念需求推导有依据的初版架构。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

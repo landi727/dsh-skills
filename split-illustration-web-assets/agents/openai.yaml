@@ -1,0 +1,13 @@
+interface:
+  display_name: 插图拆分为网站素材
+  short_description: 将确认插图拆成可补齐、可重组、可静态验收的网站素材包
+  default_prompt: 使用 $split-illustration-web-assets，将这张确认插图按指定分组拆分、补齐并导出网站素材，附装配数据和静态验收结果。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

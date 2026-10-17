@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "template_only": true,
+  "reference_boundary": "replace: exact reproduction / mechanism transfer / local analysis",
+  "sources": [
+    {
+      "id": "reference-video",
+      "path": "inputs/reference.mp4",
+      "url": null,
+      "sha256": null,
+      "hash_status": "replace after inspecting source",
+      "version": null,
+      "frame_rate": {"avg_frame_rate": null, "r_frame_rate": null, "pts_intervals": null},
+      "dimensions_px": {"width": null, "height": null},
+      "time_basis": "seconds relative to first video frame; preserve original PTS separately",
+      "evidence_manifest": "evidence/manifest.json"
+    }
+  ],
+  "capture_conditions": {
+    "viewport_css_px": {"width": null, "height": null},
+    "device_pixel_ratio": null,
+    "browser_zoom": null,
+    "scroll_position_css_px": null,
+    "input": {"type": null, "path": null, "speed": null},
+    "unknowns": ["replace with actual unavailable capture conditions"]
+  },
+  "analysis_coverage": {
+    "full_event_watched": false,
+    "watched_range_seconds": null,
+    "dense_ranges": [],
+    "limitations": ["replace: unobserved intervals, native recording rate, compression"]
+  },
+  "effects": [
+    {
+      "id": "effect-01",
+      "object": "replace: target object",
+      "trigger": {"observed": null, "start_condition": null, "exit_condition": null},
+      "states": [],
+      "observations": [],
+      "measurements": [
+        {"name": "start_delay", "value": null, "unit": "s", "status": "unmeasured", "method": null, "uncertainty": null, "evidence": [], "reason": "replace with missing evidence or measurement plan"},
+        {"name": "maximum_displacement", "value": null, "unit": "replace: px or normalized-object-width", "status": "unmeasured", "method": null, "uncertainty": null, "evidence": [], "reason": "replace with missing evidence or measurement plan"}
+      ],
+      "trajectory": {"coordinate_system": null, "anchors": [], "rotation_pivot": null, "local_deformation": null},
+      "occlusion": [],
+      "fixed_regions": [],
+      "continuity": {"start_end": null, "loop_boundary": null, "interruption": null},
+      "screen_behavior": {"observed_viewports": [], "crop": null, "background_coverage": null, "touch": null},
+      "implementation_candidates": [
+        {"mechanism": "replace: candidate", "status": "inferred", "supports": [], "alternatives": [], "source_code_evidence": [], "minimal_experiment": null}
+      ],
+      "asset_dependencies": [],
+      "unverified": []
+    }
+  ],
+  "acceptance": {
+    "same_trigger_and_viewport_required": true,
+    "replay_steps": [],
+    "time_alignment_anchor": null,
+    "checkpoints": [],
+    "tolerances": [
+      {"metric": "replace: measured metric", "value": null, "unit": null, "basis": null, "status": "unset"}
+    ],
+    "required_evidence": ["matched-condition recording", "extreme and transition frame comparison"],
+    "result": "unverified",
+    "result_evidence": []
+  },
+  "agent_task": {
+    "baseline": null,
+    "goal": null,
+    "editable_scope": [],
+    "preserve": [],
+    "prerequisites": [],
+    "deliverables": [],
+    "completion_conditions": []
+  }
+}

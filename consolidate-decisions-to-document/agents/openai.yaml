@@ -1,0 +1,13 @@
+interface:
+  display_name: 确认结论文档化
+  short_description: 提取已确认内容，保留原有关系、层级与限制，形成忠实文档
+  default_prompt: 使用 $consolidate-decisions-to-document 整理前面已经确认的内容，保持原有关系与层级，不增加新的判断。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: false

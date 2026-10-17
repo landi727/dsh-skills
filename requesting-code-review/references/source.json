@@ -1,0 +1,12 @@
+{
+  "project": "obra/superpowers",
+  "source_commit": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+  "skill_file_updated_utc": "2026-09-19T00:31:35Z",
+  "license": "MIT",
+  "upstream_sha256": {
+    "SKILL.md": "cfcee1b06774e7c0517f1e09be1a11f2d5680257072723e709ddbcf7e08b795a",
+    "LICENSE": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+    "code-reviewer.md": "82e370be6b3447523816286195571e4216ba56ba1ad6ad0e87862294c4c78dcb"
+  },
+  "adaptation": "Native independent reviewer dispatch and exact requested change range; review template retained."
+}

@@ -11,6 +11,7 @@ Collect or ask the user to record:
 - Device model, OS version, and WeChat version for each required client.
 - Final asset manifest with module IDs, formats, dimensions, and filenames.
 - Interaction targets and expected fallbacks.
+- Current E2 evidence for any platform limit or account permission used in the verdict.
 
 The user may execute this checklist manually. Do not request account credentials or publish on their behalf.
 
@@ -44,6 +45,8 @@ On at least one required iOS device and one required Android device:
 
 Add a lower-performance or older target device when animated assets or long pages are important to the intended audience.
 
+Test under the audience's normal network condition. Add one constrained-network first-open test when delayed images, GIFs, video, audio, or a long asset sequence can strand critical context. Record the condition without treating it as a universal network benchmark.
+
 ## Gate 4: fallback
 
 For each `条件可用` row:
@@ -56,6 +59,15 @@ For each `条件可用` row:
 ## Regression scope
 
 After a change, re-test the changed module, shared styles/assets, and adjacent joins. Re-run the full article when module order, global width, shared CSS, or delivery route changes.
+
+## Post-publication regression
+
+The four gates establish that the saved draft is ready to publish. When CDN processing, share cards, final URLs, or post-publication resource rewriting matter, record a separate published-URL check:
+
+- Open the published URL on both required clients.
+- Recheck changed image quality, animation, destinations, media, and module joins.
+- Verify cover, title, summary, and sharing presentation when they are within scope.
+- Label the result `已发布复验`; do not imply it was completed from a preview alone.
 
 ## Completion criteria
 

@@ -1,0 +1,13 @@
+interface:
+  display_name: 文档转开发评估
+  short_description: 评估产品文档进入真实开发阶段前的完整性、风险与门禁条件
+  default_prompt: 使用 $assess-document-development-readiness 评估这些产品文档是否具备进入真实开发阶段的条件，并给出阻断项和修复要求。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

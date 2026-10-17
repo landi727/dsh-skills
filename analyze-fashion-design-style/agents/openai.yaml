@@ -1,0 +1,14 @@
+interface:
+  display_name: 服装设计风格分析
+  short_description: 从服装形式语言、审美秩序、灵感转译与时代接受分析设计师风格
+  default_prompt: Use $analyze-fashion-design-style to analyze a fashion designer’s
+    visual language and aesthetic order.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

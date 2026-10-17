@@ -1,0 +1,13 @@
+interface:
+  display_name: 平面设计大师（已停用）
+  short_description: 已停用：禁止自动、显式及间接调用；仅用户明确要求重新启用后恢复
+  default_prompt: $design-graphic-systems 已停用；保持停用状态，仅在用户明确要求重新启用后恢复。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: false

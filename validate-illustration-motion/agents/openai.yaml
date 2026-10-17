@@ -1,0 +1,13 @@
+interface:
+  display_name: 插图动效可行性验证
+  short_description: 用代表性小样检查插图运动、背景覆盖、清晰度与动作连续性
+  default_prompt: $validate-illustration-motion 按目标动作验证这组插图素材，制作最小运行小样并给出通过、未通过和未验证的结论。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

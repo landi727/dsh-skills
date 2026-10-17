@@ -13,6 +13,14 @@ Assign one evidence level to every material compatibility claim.
 
 Prefer E3 over all lower levels. Record source, date checked, account/route scope, and relevant version. Never cite a third-party editor's preview as WeChat evidence.
 
+Add a subtype to E2 so conflicting evidence remains interpretable:
+
+- `E2-DOC`: current first-party documentation. Use for stated eligibility, format, and platform rules.
+- `E2-EDITOR`: current production-account editor UI or saved-draft behavior. Use for availability and transformation on that account and route.
+- `E2-ERROR`: native validation or rejection message. Use for the exact rejected input and route.
+
+When E2 sources conflict, do not average them. Official eligibility rules govern stated permission; the production editor or native error governs the tested input; E3 is still required for device behavior. Record the conflict and keep the more conservative feature status until reproduced.
+
 When current official documentation is unavailable, state that limitation and rely on same-route editor and device tests. Do not silently promote E1 to E2.
 
 ## Feature statuses
@@ -25,6 +33,26 @@ When current official documentation is unavailable, state that limitation and re
 | `证据不足` | Artifact, permission, version, or real preview is missing | Do not claim compatibility; list the missing evidence |
 
 Status describes the proposed implementation in its stated route. It is not a permanent property of a format such as SVG or GIF.
+
+## Severity and repair cost
+
+Assign these independently from compatibility status:
+
+| Severity | Meaning |
+| --- | --- |
+| `阻断` | Critical meaning, required action, editor survival, or a required client fails |
+| `高` | Broad or likely failure affects a major optional experience, with no accepted fallback yet |
+| `中` | Visible degradation has a working fallback or limited scope |
+| `低` | Cosmetic difference with no material effect on meaning or action |
+
+Estimate repair cost only when recommending a change:
+
+- `XS`: asset or setting change under about 30 minutes.
+- `S`: isolated module change under about half a day.
+- `M`: several modules, export logic, or one working day.
+- `L`: architecture, route, or multi-day production change.
+
+These cost bands are planning estimates. State the main assumption when team speed or tooling materially changes the estimate.
 
 ## Claim discipline
 

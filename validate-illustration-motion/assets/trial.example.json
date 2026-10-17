@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "example_only": true,
+  "task_mode": "trial",
+  "baseline": {"reference": "填写有效参考与版本", "materials": "填写实际素材路径与版本", "implementation": "填写隔离入口与代码版本"},
+  "motion": {
+    "goal": "填写已确认目标", "trigger": "填写触发方式", "start_and_end": "填写起止姿态与区间",
+    "key_states": ["预备动作", "主体动作", "运动极值", "遮挡交换", "结束姿态"],
+    "loop": null, "interrupt_behavior": "填写中断与重触发，不适用则说明"
+  },
+  "scope": {"moving_objects": [], "fixed_objects": [], "identity_anchors": [], "allowed_effect_region": "填写区域或遮罩", "files_allowed_to_change": []},
+  "targets": [
+    {"viewport": [1440, 900], "dpr": 1, "device": "未确认", "browser": "未确认", "status": "试验假设"},
+    {"viewport": [390, 844], "dpr": 3, "device": "未确认", "browser": "未确认", "status": "试验假设"}
+  ],
+  "candidates": [], "quality_conditions": [], "evidence": [], "results": [],
+  "unverified": ["尚未运行，此模板不代表任何条件通过"]
+}

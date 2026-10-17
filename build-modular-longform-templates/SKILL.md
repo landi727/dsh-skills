@@ -1,23 +1,18 @@
 ---
 name: build-modular-longform-templates
-description: Create modular long-image visual previews, then convert an approved preview or reference into reusable HTML and CSS modules with content-driven height and local assets. Use for fixed-style template extension, visual template confirmation, or editable longform production. Exclude standalone style critique, general websites, and Canva-only reconstruction.
-whenToUse: Generate and confirm modular long-image previews, or convert an approved reference into editable, composable HTML and CSS modules with extensible body frames. Exclude general websites, critique-only requests, and Canva-only reconstruction.
+description: 已停用。用户于 2026-10-06 明确要求停用；禁止自动匹配、显式执行或通过其他技能与 Agent 间接启动。原始规则与资源仅供归档审查；仅用户明确重新启用并完成配置修改、验证与保存后可恢复。
 ---
 
+# 停用状态
+
+用户于 2026-10-06 明确要求停用本技能。禁止自动匹配、显式执行、手动调用，或通过其他技能与 Agent 间接启动；新的长图制作任务不构成恢复授权。只有用户明确要求重新启用，并完成配置修改、验证与保存后，才可恢复。
+
+迁移核对时，当前安装主文件仍保留启用式触发说明，与《长图文制作_使用说明.md》v2 及《秋游野餐_Agent_执行指令.md》v3 的既有停用记录冲突。此仓库副本据该决定补齐停用入口；原正文与配套资源完整保留，以下归档内容不构成当前可执行指令。
+
+## 原始规则归档（停用期间禁止执行）
+
+
 # Build Modular Longform Templates
-
-## Repository Contract
-
-**Type**: Workflow (Creative / Visual Production).
-**Responsibility**: Generate modular visual previews for approval, then turn an approved visual reference into reusable, editable HTML + CSS long-image modules and local assets.
-**Boundary**: Exclude editor applications, backends, deployment, brand-database integration and Canva-only reconstruction.
-**Input Contract**: Use the primary reference, established style, available brand assets and requested module scope. Accept source references at any dimensions. User-specified output dimensions take precedence; otherwise use the defaults below.
-**Output Contract**: In visual-preview mode, deliver review images and a measured module map without HTML. In html-production mode, deliver standalone modules, shared CSS, local assets, a composed example and a module manifest.
-**Failure Handling**: Ask for missing references; identify inaccessible assets or fonts and unrun tests; preserve completed work and report blocked delivery without claiming verification.
-**Validation**: Follow the visual comparison and local-file/content-length checks in references/html-delivery.md.
-**Stop Condition**: Finish when requested files are saved and scoped checks pass; stop with a precise blocker when required inputs, tools or delivery access remain unavailable. Do not expand the task to compensate.
-**Reuse Scope**: Visual/editorial template production across brands and styles.
-**Maturity**: Level 0 Draft. Structural validation and one planning-only usage check were completed; a full failure-mode eval suite, actual template production and a targeted visual revision cycle remain unverified.
 
 ## Outcome and scope
 

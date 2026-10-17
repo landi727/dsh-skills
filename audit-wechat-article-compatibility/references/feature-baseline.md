@@ -1,6 +1,6 @@
 # Feature review baseline
 
-Use this as a risk-routing guide. Current first-party rules and real-route tests take precedence.
+Use this after assigning a default status from [implementation-matrix.md](implementation-matrix.md). Current first-party rules and real-route tests take precedence. Apply the pass/fail rules in [acceptance-criteria.md](acceptance-criteria.md); do not invent permanent file or account limits.
 
 ## Static images and baked text
 
@@ -9,6 +9,7 @@ Use this as a risk-routing guide. Current first-party rules and real-route tests
 - Keep production text editable upstream when useful; audit the final PNG/JPG/GIF that enters WeChat.
 - Avoid relying on external image URLs. Confirm that the saved draft uses resources accepted by the final WeChat route.
 - Check that critical text is readable without zoom and remains present when optional motion is unavailable.
+- Group ordinary images that share one mechanism. Keep every continuous join as an individual test boundary.
 
 ## GIF
 
@@ -17,6 +18,7 @@ Use this as a risk-routing guide. Current first-party rules and real-route tests
 - Test first-load state, animation start, loop, duration, frame order, compression damage, dropped frames, and low-performance behavior.
 - Replace long or heavy sequences with a shorter loop, fewer frames, or a static frame when motion does not carry essential meaning.
 - Keep module joins stable when the GIF's rendered dimensions differ from its local preview.
+- Record final bytes, dimensions, frame count, and duration. Compare them with a current E2 limit only when that limit and scope are recorded.
 
 ## SVG and CSS interaction
 
@@ -61,3 +63,4 @@ Use this as a risk-routing guide. Current first-party rules and real-route tests
 - Compare three states separately: local render, WeChat saved/reopened draft, and device preview.
 - Audit the transformed state after copy/import. Never infer that browser support equals article support.
 - When a package references remote assets, confirm that every required asset is available and transferred through the final route.
+- Run `scripts/audit_source.py` first, then manually inspect the transformed saved draft. Static detection does not establish editor or device compatibility.

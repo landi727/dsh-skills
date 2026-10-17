@@ -1,0 +1,13 @@
+interface:
+  display_name: 八字命理分析
+  short_description: 以子平为主轴，按问题范围提供专业、易懂的八字分析
+  default_prompt: 使用 $analyze-bazi 分析这个八字；如果我没有提出具体问题，请按默认完整范围判断。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

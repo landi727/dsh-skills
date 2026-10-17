@@ -1,0 +1,11 @@
+{
+  "project": "garrytan/gstack",
+  "source_commit": "4015c2870b064644131ed6f7cfcc1469cfe9808c",
+  "skill_file_updated_utc": "2026-10-03T23:13:45Z",
+  "license": "MIT",
+  "upstream_sha256": {
+    "design-review/SKILL.md": "9b4ca088458f5d3c2d486bb5b93047d156002ca6a5928f2d53fffc743665f99d",
+    "LICENSE": "e56fbb5b3d95756f3fa1cfefa24732ec79f18ece1ad08a4e79e00df57e8b198c"
+  },
+  "adaptation": "Standalone Work workflow: native browser/review tools, preserves audit/scoring/baseline/fix loop/evidence. No gstack runtime, telemetry or installers."
+}

@@ -1,0 +1,14 @@
+interface:
+  display_name: gstack · Design Review
+  short_description: Audit rendered pages and verify visual fixes with evidence
+  default_prompt: Use $design-review to audit this website and verify authorized visual
+    fixes.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file": "source/original.png",
+    "width": 1440,
+    "height": 900
+  },
+  "canvas": {
+    "width": 1440,
+    "height": 900
+  },
+  "layers": [
+    {
+      "id": "background",
+      "name": "连续背景",
+      "kind": "background",
+      "file": "layers/background.png",
+      "z": 0,
+      "x": -60,
+      "y": -30,
+      "width": 1560,
+      "height": 960,
+      "export_scale": 3,
+      "source_method": "extract-and-complete",
+      "visible_source_preserved": "unknown",
+      "completion_mask": "masks/background-completion.png",
+      "coverage": {
+        "mode": "opaque-rect",
+        "required_rect": {
+          "x": -60,
+          "y": -30,
+          "width": 1560,
+          "height": 960
+        }
+      },
+      "resolution": {
+        "max_display_width_px": 1560,
+        "max_display_height_px": 960,
+        "pixel_ratio": 3,
+        "visual_quality_status": "unverified"
+      }
+    },
+    {
+      "id": "subject",
+      "name": "主体",
+      "kind": "subject",
+      "group": "subjects",
+      "file": "layers/subject.png",
+      "z": 10,
+      "x": 480,
+      "y": 300,
+      "width": 400,
+      "height": 500,
+      "export_scale": 3,
+      "source_method": "extract",
+      "visible_source_preserved": true,
+      "resolution": {
+        "max_display_width_px": 400,
+        "max_display_height_px": 500,
+        "pixel_ratio": 3,
+        "visual_quality_status": "unverified"
+      }
+    },
+    {
+      "id": "foreground",
+      "name": "前景",
+      "kind": "foreground",
+      "file": "layers/foreground.png",
+      "z": 20,
+      "x": 0,
+      "y": 750,
+      "width": 1440,
+      "height": 150,
+      "export_scale": 3,
+      "source_method": "native",
+      "visible_source_preserved": true,
+      "resolution": {
+        "max_display_width_px": 1440,
+        "max_display_height_px": 150,
+        "pixel_ratio": 3,
+        "visual_quality_status": "unverified"
+      }
+    }
+  ],
+  "target_views": [
+    {
+      "id": "original",
+      "width_px": 1440,
+      "height_px": 900,
+      "source_rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "id": "specified-extended-area",
+      "width_px": 1560,
+      "height_px": 960,
+      "source_rect": {
+        "x": -60,
+        "y": -30,
+        "width": 1560,
+        "height": 960
+      }
+    }
+  ],
+  "notes": "仅为字段模板。替换全部文件、尺寸及每层有效显示范围，尤其不能把含透明空边的图层宽高当作有效内容宽高；原生有效像素与处理方法需按实际来源补录。"
+}

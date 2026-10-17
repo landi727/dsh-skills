@@ -1,0 +1,14 @@
+interface:
+  display_name: Prompt Master
+  short_description: Creates and improves one production-ready AI prompt.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  default_prompt: Use $prompt-master to turn my rough brief into one production-ready
+    prompt for [TARGET TOOL].
+policy:
+  allow_implicit_invocation: true
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas

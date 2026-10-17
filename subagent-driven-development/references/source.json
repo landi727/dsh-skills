@@ -1,0 +1,17 @@
+{
+  "project": "obra/superpowers",
+  "source_commit": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+  "skill_file_updated_utc": "2026-09-19T00:31:35Z",
+  "license": "MIT",
+  "upstream_sha256": {
+    "SKILL.md": "8dde5589ee083fb4999106d116f01c8fdaf3116a8a9813fdedeb80329de49046",
+    "LICENSE": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+    "re-review-prompt.md": "0828a5e9cbb12ba49f14621dd8c3953c48c0fc383e75bb5494f055ed0d6d824f",
+    "implementer-prompt.md": "81dd9d5a3fb0b09b96b5829f03b9796842f3199ef7591d1ba1c2db2a515f64d0",
+    "task-reviewer-prompt.md": "bfed55c8f19d0ff6ed57b0fe09127c92890e9311c6c73917129598826bf9ebe8",
+    "scripts/sdd-workspace": "75ca46c756ba4209ca36e0d3d65567257ceb33bc7a6775b9dad946707cb3bd7b",
+    "scripts/review-package": "f9275175b2276b1d5fdb1bae0bedaadd2a950659b7c6f311ea37ff85e1861b1f",
+    "scripts/task-brief": "cc563538e09abf719b34ddf4b2fa7a65cf3b301729039dbfa923cb060f729146"
+  },
+  "adaptation": "Native Work tool mapping, target project working directory, and lookup by skill frontmatter name; workflow and companion scripts retained."
+}

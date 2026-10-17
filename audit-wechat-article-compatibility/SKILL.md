@@ -11,12 +11,12 @@ description: Audit interaction designs, media, source packages, and pre-publicat
 - **Responsibility:** Determine which proposed article behaviors are safe for the main version, which require proof in the real WeChat route, and which need a fallback before production.
 - **Boundary:** Do not redesign the whole article, review copy legality, operate the user's account, publish content, or promise universal compatibility from a local browser render.
 - **Input:** Accept a plan, module list, screenshots, HTML/ZIP, asset folder, published URL, WeChat draft preview, or test evidence. Work with partial inputs and identify only the missing facts that change the verdict.
-- **Output:** Deliver a verdict, feature matrix, blockers, minimal repairs, fallback map, evidence ledger, and release-test checklist.
+- **Output:** Match the report to the selected mode. Do not force release-only tables into a plan review.
 - **Failure handling:** Mark unsupported claims and inaccessible artifacts as `证据不足`. Never convert an untested behavior into a compatibility claim.
 - **Validation:** A release-ready verdict requires the four gates below. Reasoning or a published precedent alone cannot satisfy the device gate.
 - **Stop condition:** Stop after every critical feature is either verified, replaced with a safe fallback, or listed as a precise blocker.
-- **Reuse scope:** WeChat Official Account article planning, source inspection, and pre-publication technical review.
-- **Maturity:** Level 0 Draft. Structure validation is complete; same-account editor and dual-device production validation remain unverified.
+- **Reuse scope:** WeChat Official Account article planning, source inspection, pre-publication review, and post-publication regression checks.
+- **Maturity:** Level 1 Operational. Deterministic source inspection and decision thresholds are available; current platform limits and same-account device behavior still require route-specific evidence.
 
 ## Select the review mode
 
@@ -38,6 +38,7 @@ Record these facts before assigning a final compatibility status:
 - Production path: direct WeChat editor, third-party editor paste/import, API draft creation, or another stated route.
 - Intended clients: at minimum iOS and Android WeChat; add desktop or older devices only when audience or interaction requires them.
 - Essential behaviors and optional enhancements.
+- Current editor or official limit evidence for any decision that depends on file size, duration, dimensions, account eligibility, or destination type. Do not invent a fixed platform limit.
 
 Ask only for missing facts that change a major verdict. When facts remain unknown, continue with a conservative plan review and label the assumptions.
 
@@ -45,9 +46,9 @@ Ask only for missing facts that change a major verdict. When facts remain unknow
 
 ### 1. Inventory every behavior
 
-Create one row per static image, GIF, SVG/CSS effect, native media block, link, mini-program entry, tap area, reveal, animation trigger, or continuous-image join. Give each row a stable module ID.
+Group adjacent static modules that share the same mechanism, source, and fallback. Create separate rows for every interaction, native media block, destination, conditional effect, and continuous-image join. Give every row or group a stable module ID.
 
-For HTML or a ZIP, inspect the actual DOM, CSS, asset types, remote URLs, dimensions, and file availability. Asset counts do not prove visible behavior. A missing remote asset makes the package incomplete.
+For HTML, a ZIP, or an asset folder, run `python scripts/audit_source.py INPUT --format markdown` before manual review. Inspect the reported DOM, CSS, assets, remote URLs, dimensions, missing files, and risky mechanisms. The script is a source-risk detector; it cannot prove editor survival or device compatibility. Asset counts do not prove visible behavior.
 
 ### 2. Separate content from enhancement
 
@@ -67,7 +68,9 @@ A published article proves that a technique worked for that article, route, acco
 
 ### 4. Review by feature family
 
-Read [references/feature-baseline.md](references/feature-baseline.md) for the relevant feature families. Preserve the intended visual effect where evidence supports it. Reduce or replace only the mechanism that creates the compatibility risk.
+Read [references/implementation-matrix.md](references/implementation-matrix.md) to assign the default planning status for each mechanism and delivery route. Then read only the relevant sections of [references/feature-baseline.md](references/feature-baseline.md). Preserve the intended visual effect where evidence supports it. Reduce or replace only the mechanism that creates the compatibility risk.
+
+The matrix gives planning defaults, not permanent platform facts. Upgrade a default only with stronger evidence for the stated account and route.
 
 Use the saved-and-reopened WeChat draft as the implementation source of truth. Local HTML and third-party editor previews are design evidence only because WeChat may clean markup, rewrite resources, or change layout.
 
@@ -84,7 +87,7 @@ Prefer static frames or GIFs for decorative motion, visible platform-native link
 
 ### 6. Build the release test
 
-Read [references/release-tests.md](references/release-tests.md) for `release-audit` and whenever a plan contains conditional behavior. Produce a manual checklist the user can execute without granting account access.
+Read [references/acceptance-criteria.md](references/acceptance-criteria.md) whenever assigning pass/fail. Read [references/release-tests.md](references/release-tests.md) for `release-audit` and whenever a plan contains conditional behavior. Produce a manual checklist the user can execute without granting account access.
 
 ### 7. Issue the verdict
 
@@ -96,6 +99,8 @@ Use only these verdicts:
 - `仅完成策划审查`: implementation or device evidence has not yet been supplied.
 
 Never shorten `仅完成策划审查` to `可发布`.
+
+`可发布` means the tested draft is ready for release. It does not claim that CDN processing, sharing metadata, or the published URL has been verified. Record a separate post-publication regression result when those behaviors matter.
 
 ## Four release gates
 
@@ -109,6 +114,12 @@ The Skill creates release-level assurance through these gates. Platform updates,
 ## Deliver the report
 
 Use [references/report-template.md](references/report-template.md). Lead with the verdict and blockers. Keep evidence, observation, inference, and recommendation distinct.
+
+- `plan-audit`: verdict, blockers, compact mechanism matrix, minimal revisions, assumptions, and named future tests.
+- `source-audit`: verdict, source findings, missing assets, mechanism risks, minimal repairs, and proof still needed. Do not include empty device-result tables.
+- `release-audit`: full gates, feature matrix, device results, fallbacks, evidence ledger, and remaining blockers.
+
+Assign severity and repair cost using [references/evidence-and-status.md](references/evidence-and-status.md). Prefer grouped findings over repeated rows with the same cause.
 
 When the user asks for a revised plan, edit only the incompatible implementation choices and preserve approved content, visual hierarchy, pacing, and campaign decisions. End with the exact items requiring user-side preview evidence.
 

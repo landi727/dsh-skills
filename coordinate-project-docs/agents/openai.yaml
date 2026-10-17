@@ -1,0 +1,13 @@
+interface:
+  display_name: 项目推进与文档维护
+  short_description: 根据项目阶段整理必要文档、明确执行依据，并同步进度、决策和验收记录
+  default_prompt: 使用 $coordinate-project-docs，读取当前项目的要求、已有资料和实际成果，建立或更新必要文档，明确本阶段可执行的下一步。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,13 @@
+interface:
+  display_name: 跨对话项目交接
+  short_description: 按项目实际阶段保存成果、核对断点并完成跨对话交出或接手
+  default_prompt: 使用 $project-handoff，核对当前项目的实际成果、断点和授权，完成本次交出或接手。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

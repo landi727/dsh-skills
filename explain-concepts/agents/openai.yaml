@@ -1,0 +1,13 @@
+interface:
+  display_name: 解释概念
+  short_description: 把抽象概念解释成可理解、可区分、可判断的实际机制与边界
+  default_prompt: 使用 $explain-concepts 清楚解释这个概念，讲明它的作用、机制、边界和判断方法。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

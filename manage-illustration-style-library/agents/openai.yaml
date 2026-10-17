@@ -1,0 +1,13 @@
+interface:
+  display_name: 插图风格库
+  short_description: 保存参考图与分析，按用途检索风格，并区分来源与生成验证状态
+  default_prompt: 使用 $manage-illustration-style-library 归档这次完整插图分析，或从已有风格中选择适合当前需求的一种。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

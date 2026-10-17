@@ -1,7 +1,16 @@
 ---
 name: design-longform-layouts
-description: Extract, formalize, transfer, and apply layout DNA across different visual styles and production contexts. Use when a user asks to analyze references, reproduce their composition or editorial feeling, create a reusable layout specification, turn references into a wireframe or production brief, or design a webpage, long image, online poster, or offline visual material without copying the reference's original colors, subject matter, materials, or brand skin.
+description: 已停用。用户于 2026-10-06 明确要求停用；禁止自动匹配、显式执行或通过其他技能与 Agent 间接启动。原始规则与资源仅供归档审查；仅用户明确重新启用并完成配置修改、验证与保存后可恢复。
 ---
+
+# 停用状态
+
+用户于 2026-10-06 明确要求停用本技能。禁止自动匹配、显式执行、手动调用，或通过其他技能与 Agent 间接启动；新的长图制作任务不构成恢复授权。只有用户明确要求重新启用，并完成配置修改、验证与保存后，才可恢复。
+
+迁移核对时，当前安装主文件仍保留启用式触发说明，与《长图文制作_使用说明.md》v2 及《秋游野餐_Agent_执行指令.md》v3 的既有停用记录冲突。此仓库副本据该决定补齐停用入口；原正文与配套资源完整保留，以下归档内容不构成当前可执行指令。
+
+## 原始规则归档（停用期间禁止执行）
+
 
 # Design Longform Layouts
 

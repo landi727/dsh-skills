@@ -1,0 +1,13 @@
+interface:
+  display_name: 参考动效拆解
+  short_description: 把参考录屏拆成带时间证据、素材需求与验收条件的动效说明
+  default_prompt: $analyze-reference-motion 拆解这段参考动效，记录触发、轨迹、节奏、遮挡和可检查的复刻标准。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

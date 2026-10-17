@@ -1,0 +1,13 @@
+interface:
+  display_name: 角色首页插图生成（已禁用）
+  short_description: 已禁用：禁止自动启动、手动执行或调用本技能的关联生成流程。
+  default_prompt: 禁止启动或使用 $compose-character-homepage-art；此技能已被用户停用。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: false

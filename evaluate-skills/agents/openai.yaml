@@ -1,0 +1,14 @@
+interface:
+  display_name: Evaluate Skills
+  short_description: Test and improve Agent Skills
+  default_prompt: Use $evaluate-skills to test this skill against realistic cases
+    and recommend only evidence-backed improvements.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
